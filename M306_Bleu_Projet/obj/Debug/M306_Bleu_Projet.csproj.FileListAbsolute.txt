@@ -1,0 +1,9 @@
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\bin\Debug\M306_Bleu_Projet.exe.config
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\bin\Debug\M306_Bleu_Projet.exe
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\bin\Debug\M306_Bleu_Projet.pdb
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\obj\Debug\M306_Bleu_Projet.csprojAssemblyReference.cache
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\obj\Debug\M306_Bleu_Projet.Form1.resources
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\obj\Debug\M306_Bleu_Projet.Properties.Resources.resources
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\obj\Debug\M306_Bleu_Projet.csproj.GenerateResource.cache
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\obj\Debug\M306_Bleu_Projet.exe
+D:\rso\ecole\CFC\M306\M306_Bleu\M306_Bleu_Projet\obj\Debug\M306_Bleu_Projet.pdb

@@ -17,19 +17,18 @@ namespace M306_Bleu_Projet
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void timerGlobal_Tick(object sender, EventArgs e)
         {
+            String EuropeFormat = "HH:mm";
+            String USAFormat = "hh:mm";
+            String HeureActive = DateTime.Now.ToString(USAFormat);
 
+            lblTime.Text = HeureActive;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
+            timerGlobal.Start();
         }
     }
 }
