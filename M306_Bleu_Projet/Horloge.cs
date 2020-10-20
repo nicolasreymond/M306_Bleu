@@ -6,88 +6,132 @@ using System.Threading;
 
 namespace M306_Bleu_Projet
 {
-
-
-    public class Horloge
+    enum HorlogeState
     {
-        private DateTime now;
+        NaturalConfiguration, // statut par défaut
+        NatureSoundConfiguration, // nature sound statut
+        AlarmConfiguration,
+        AlarmAConfiguration,
+        AlarmBConfiguration
+    }
 
-        public DateTime Now { get => now; set => now = value; }
+    enum HorlogeFormat
+    {
+        Europe,
+        America
+    }
+
+    enum AlarmConfigurationEtapes
+    {
+        Inactive,
+        Annee,
+        Mois,
+        Jour,
+        Heure,
+        Minute
+    }
+
+    public class Horloge 
+    {
+        private int luminosite;
+
+        private HorlogeFormat format;
+
+        private HorlogeState statut;
+        private AlarmConfigurationEtapes etapeActive;
+
+        private DateTime heureHorloge;
+        private DateTime nouvelleHeure;
+
+        private Horaire configurationHorloge = new Horaire();
+        private Horaire configurationAlarmeA = new Horaire();
+        private Horaire configurationAlarmeB = new Horaire();
+
+
+
+        internal HorlogeState Statut { get => statut; set => statut = value; }
+        internal HorlogeFormat Format { get => format; set => format = value; }
+        internal AlarmConfigurationEtapes EtapeActive { get => etapeActive; set => etapeActive = value; }
+        public DateTime HeureHorloge { get => heureHorloge; set => heureHorloge = value; }
+
+        public int Luminosite
+        {
+            get => luminosite;
+            set
+            {
+                if (value > 3)
+                    luminosite = 1;
+                else
+                    luminosite = value;
+            }
+        }
+
+        public Horaire ConfigurationHorloge { get => configurationHorloge; set => configurationHorloge = value; }
+        public Horaire ConfigurationAlarmeA { get => configurationAlarmeA; set => configurationAlarmeA = value; }
+        public Horaire ConfigurationAlarmeB { get => configurationAlarmeB; set => configurationAlarmeB = value; }
+        public DateTime NouvelleHeure { get => nouvelleHeure; set => nouvelleHeure = value; }
 
         public Horloge()
         {
-            this.Now = DateTime.Now;
+            Statut = HorlogeState.NaturalConfiguration;    // Configuration de base
+            Format = HorlogeFormat.Europe;                 // Format d'horloge de base
+            Luminosite = 1;                                // Luminosité de base
+            HeureHorloge = DateTime.Now;
+            NouvelleHeure = DateTime.Now;
         }
 
-        public string GetHeureFormat24()
+        public DateTime GetHeure()
         {
-            String EuropeFormat = "HH:mm";
-            return this.Now.ToString(EuropeFormat);
-        }
-
-        public string GetHeureFormat12()
-        {
-            String USAFormat = "hh:mm";
-            return this.Now.ToString(USAFormat);
-        }
-
-        public string GetYear()
-        {
-            return this.Now.Year.ToString();
-        }
-
-        public void test()
-        {
-            // Create an AutoResetEvent to signal the timeout threshold in the
-            // timer callback has been reached.
-            var autoEvent = new AutoResetEvent(false);
-
-            var statusChecker = new StatusChecker(10);
-
-            // Create a timer that invokes CheckStatus after one second, 
-            // and every 1/4 second thereafter.
-            Console.WriteLine("{0:h:mm:ss.fff} Creating timer.\n",
-                              DateTime.Now);
-            var stateTimer = new Timer(statusChecker.CheckStatus,
-                                       autoEvent, 1000, 250);
-
-            // When autoEvent signals, change the period to every half second.
-            autoEvent.WaitOne();
-            stateTimer.Change(0, 500);
-            Console.WriteLine("\nChanging period to .5 seconds.\n");
-
-            // When autoEvent signals the second time, dispose of the timer.
-            autoEvent.WaitOne();
-            stateTimer.Dispose();
-            Console.WriteLine("\nDestroying timer.");
-        }
-    }
-
-    class StatusChecker
-    {
-        private int invokeCount;
-        private int maxCount;
-
-        public StatusChecker(int count)
-        {
-            invokeCount = 0;
-            maxCount = count;
-        }
-
-        // This method is called by the timer delegate.
-        public void CheckStatus(Object stateInfo)
-        {
-            AutoResetEvent autoEvent = (AutoResetEvent)stateInfo;
-            Console.WriteLine("{0} Checking status {1,2}.",
-                DateTime.Now.ToString("h:mm:ss.fff"),
-                (++invokeCount).ToString());
-
-            if (invokeCount == maxCount)
+            if (NouvelleHeure != HeureHorloge)
             {
-                // Reset the counter and signal the waiting thread.
-                invokeCount = 0;
-                autoEvent.Set();
+                TimeSpan heureDecalage;
+
+                if (NouvelleHeure > HeureHorloge)
+                {
+                    heureDecalage = NouvelleHeure - HeureHorloge;
+
+                    return DateTime.Now + heureDecalage;
+                }
+
+                heureDecalage = HeureHorloge - NouvelleHeure;
+
+                return DateTime.Now - heureDecalage;
             }
+
+            return DateTime.Now;
+        }
+
+        public string GetAnnee(Horaire horaire)
+        {
+            return horaire.Annee.ToString();
+        }
+
+        public string GetMois(Horaire horaire)
+        {
+            return horaire.Mois.ToString();
+        }
+
+        public string GetJour(Horaire horaire)
+        {
+            return horaire.Jour.ToString();
+        }
+
+        public string GetHeure(Horaire horaire)
+        {
+            if ( Format == HorlogeFormat.America)
+            {
+                if ( horaire.Heure > 12)
+                {
+                    return (horaire.Heure - 12).ToString();
+                }
+            }
+
+            return horaire.Heure.ToString();
+        }
+
+        public string GetMinute(Horaire horaire)
+        {
+            return horaire.Minute.ToString();
         }
     }
 }

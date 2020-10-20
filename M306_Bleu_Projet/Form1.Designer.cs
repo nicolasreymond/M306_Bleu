@@ -30,9 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbHorlogeFront = new System.Windows.Forms.GroupBox();
+            this.lblConfigurationValue = new System.Windows.Forms.Label();
+            this.lblConfigurationField = new System.Windows.Forms.Label();
+            this.lblConfigurationName = new System.Windows.Forms.Label();
             this.lblSony = new System.Windows.Forms.Label();
             this.gbClock = new System.Windows.Forms.GroupBox();
             this.lblTimeFormat = new System.Windows.Forms.Label();
+            this.lblTimerAnimation = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -49,6 +53,8 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbHorlogeDessus = new System.Windows.Forms.GroupBox();
+            this.btnDisplayClock = new System.Windows.Forms.Button();
+            this.btnTimeZone = new System.Windows.Forms.Button();
             this.gbTimeSetLeft = new System.Windows.Forms.GroupBox();
             this.btnTimeSetLeftDown = new System.Windows.Forms.Button();
             this.btnTimeSetLeftUp = new System.Windows.Forms.Button();
@@ -75,7 +81,7 @@
             this.timerGlobal = new System.Windows.Forms.Timer(this.components);
             this.timerButtons = new System.Windows.Forms.Timer(this.components);
             this.timerAnimation = new System.Windows.Forms.Timer(this.components);
-            this.lblTimerAnimation = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.gbHorlogeFront.SuspendLayout();
             this.gbClock.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -95,6 +101,9 @@
             // 
             // gbHorlogeFront
             // 
+            this.gbHorlogeFront.Controls.Add(this.lblConfigurationValue);
+            this.gbHorlogeFront.Controls.Add(this.lblConfigurationField);
+            this.gbHorlogeFront.Controls.Add(this.lblConfigurationName);
             this.gbHorlogeFront.Controls.Add(this.lblSony);
             this.gbHorlogeFront.Controls.Add(this.gbClock);
             this.gbHorlogeFront.Controls.Add(this.groupBox5);
@@ -108,6 +117,39 @@
             this.gbHorlogeFront.Size = new System.Drawing.Size(776, 285);
             this.gbHorlogeFront.TabIndex = 0;
             this.gbHorlogeFront.TabStop = false;
+            // 
+            // lblConfigurationValue
+            // 
+            this.lblConfigurationValue.AutoSize = true;
+            this.lblConfigurationValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfigurationValue.Location = new System.Drawing.Point(369, 116);
+            this.lblConfigurationValue.Name = "lblConfigurationValue";
+            this.lblConfigurationValue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblConfigurationValue.Size = new System.Drawing.Size(168, 20);
+            this.lblConfigurationValue.TabIndex = 1;
+            this.lblConfigurationValue.Text = "Configuration Value";
+            // 
+            // lblConfigurationField
+            // 
+            this.lblConfigurationField.AutoSize = true;
+            this.lblConfigurationField.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfigurationField.Location = new System.Drawing.Point(195, 116);
+            this.lblConfigurationField.Name = "lblConfigurationField";
+            this.lblConfigurationField.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblConfigurationField.Size = new System.Drawing.Size(161, 20);
+            this.lblConfigurationField.TabIndex = 1;
+            this.lblConfigurationField.Text = "Configuration Field";
+            // 
+            // lblConfigurationName
+            // 
+            this.lblConfigurationName.AutoSize = true;
+            this.lblConfigurationName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfigurationName.Location = new System.Drawing.Point(195, 87);
+            this.lblConfigurationName.Name = "lblConfigurationName";
+            this.lblConfigurationName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblConfigurationName.Size = new System.Drawing.Size(195, 24);
+            this.lblConfigurationName.TabIndex = 1;
+            this.lblConfigurationName.Text = "Configuration Name";
             // 
             // lblSony
             // 
@@ -143,6 +185,17 @@
             this.lblTimeFormat.TabIndex = 1;
             this.lblTimeFormat.Text = "PM";
             // 
+            // lblTimerAnimation
+            // 
+            this.lblTimerAnimation.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimerAnimation.Location = new System.Drawing.Point(201, 45);
+            this.lblTimerAnimation.Name = "lblTimerAnimation";
+            this.lblTimerAnimation.Size = new System.Drawing.Size(14, 55);
+            this.lblTimerAnimation.TabIndex = 0;
+            this.lblTimerAnimation.Text = ":";
+            this.lblTimerAnimation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTimerAnimation.UseCompatibleTextRendering = true;
+            // 
             // lblTime
             // 
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -165,9 +218,9 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Location = new System.Drawing.Point(631, 206);
+            this.groupBox5.Location = new System.Drawing.Point(602, 206);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(139, 62);
+            this.groupBox5.Size = new System.Drawing.Size(168, 62);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Température";
@@ -184,11 +237,12 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.lblAlarmSettingsHour);
             this.groupBox4.Controls.Add(this.lblAlarmActiveOnSettings);
-            this.groupBox4.Location = new System.Drawing.Point(631, 138);
+            this.groupBox4.Location = new System.Drawing.Point(602, 103);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(139, 62);
+            this.groupBox4.Size = new System.Drawing.Size(168, 97);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Réglage alarme";
@@ -196,17 +250,17 @@
             // lblAlarmSettingsHour
             // 
             this.lblAlarmSettingsHour.AutoSize = true;
-            this.lblAlarmSettingsHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlarmSettingsHour.Location = new System.Drawing.Point(67, 21);
+            this.lblAlarmSettingsHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlarmSettingsHour.Location = new System.Drawing.Point(113, 65);
             this.lblAlarmSettingsHour.Name = "lblAlarmSettingsHour";
-            this.lblAlarmSettingsHour.Size = new System.Drawing.Size(55, 24);
+            this.lblAlarmSettingsHour.Size = new System.Drawing.Size(49, 20);
             this.lblAlarmSettingsHour.TabIndex = 0;
             this.lblAlarmSettingsHour.Text = "10:30";
             // 
             // lblAlarmActiveOnSettings
             // 
             this.lblAlarmActiveOnSettings.AutoSize = true;
-            this.lblAlarmActiveOnSettings.Location = new System.Drawing.Point(6, 29);
+            this.lblAlarmActiveOnSettings.Location = new System.Drawing.Point(6, 17);
             this.lblAlarmActiveOnSettings.Name = "lblAlarmActiveOnSettings";
             this.lblAlarmActiveOnSettings.Size = new System.Drawing.Size(26, 13);
             this.lblAlarmActiveOnSettings.TabIndex = 0;
@@ -230,7 +284,7 @@
             this.lblLuminosite.Name = "lblLuminosite";
             this.lblLuminosite.Size = new System.Drawing.Size(20, 24);
             this.lblLuminosite.TabIndex = 0;
-            this.lblLuminosite.Text = "3";
+            this.lblLuminosite.Text = "1";
             // 
             // gbNatureSound
             // 
@@ -294,6 +348,8 @@
             // 
             // gbHorlogeDessus
             // 
+            this.gbHorlogeDessus.Controls.Add(this.btnDisplayClock);
+            this.gbHorlogeDessus.Controls.Add(this.btnTimeZone);
             this.gbHorlogeDessus.Controls.Add(this.gbTimeSetLeft);
             this.gbHorlogeDessus.Controls.Add(this.gbTimeSetRight);
             this.gbHorlogeDessus.Controls.Add(this.gbVolume);
@@ -309,6 +365,30 @@
             this.gbHorlogeDessus.Size = new System.Drawing.Size(776, 230);
             this.gbHorlogeDessus.TabIndex = 0;
             this.gbHorlogeDessus.TabStop = false;
+            // 
+            // btnDisplayClock
+            // 
+            this.btnDisplayClock.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDisplayClock.Location = new System.Drawing.Point(287, 87);
+            this.btnDisplayClock.Name = "btnDisplayClock";
+            this.btnDisplayClock.Size = new System.Drawing.Size(108, 36);
+            this.btnDisplayClock.TabIndex = 0;
+            this.btnDisplayClock.Text = "DISPLAY/CLOCK";
+            this.btnDisplayClock.UseVisualStyleBackColor = true;
+            this.btnDisplayClock.Click += new System.EventHandler(this.btnDisplayClockClick);
+            this.btnDisplayClock.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnDisplayClockDown);
+            this.btnDisplayClock.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnDisplayClockUp);
+            // 
+            // btnTimeZone
+            // 
+            this.btnTimeZone.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimeZone.Location = new System.Drawing.Point(401, 87);
+            this.btnTimeZone.Name = "btnTimeZone";
+            this.btnTimeZone.Size = new System.Drawing.Size(108, 36);
+            this.btnTimeZone.TabIndex = 0;
+            this.btnTimeZone.Text = "DATE/TIME ZONE";
+            this.btnTimeZone.UseVisualStyleBackColor = true;
+            this.btnTimeZone.Click += new System.EventHandler(this.btnAlarmOffClick);
             // 
             // gbTimeSetLeft
             // 
@@ -330,6 +410,7 @@
             this.btnTimeSetLeftDown.TabIndex = 0;
             this.btnTimeSetLeftDown.Text = "-";
             this.btnTimeSetLeftDown.UseVisualStyleBackColor = true;
+            this.btnTimeSetLeftDown.Click += new System.EventHandler(this.btnTimeSetRemove_Click);
             // 
             // btnTimeSetLeftUp
             // 
@@ -340,6 +421,7 @@
             this.btnTimeSetLeftUp.TabIndex = 0;
             this.btnTimeSetLeftUp.Text = "+";
             this.btnTimeSetLeftUp.UseVisualStyleBackColor = true;
+            this.btnTimeSetLeftUp.Click += new System.EventHandler(this.btnTimeSetAdd_Click);
             // 
             // gbTimeSetRight
             // 
@@ -361,6 +443,7 @@
             this.btnTimeSetRightDown.TabIndex = 0;
             this.btnTimeSetRightDown.Text = "-";
             this.btnTimeSetRightDown.UseVisualStyleBackColor = true;
+            this.btnTimeSetRightDown.Click += new System.EventHandler(this.btnTimeSetRemove_Click);
             // 
             // btnTimeSetRightUp
             // 
@@ -371,6 +454,7 @@
             this.btnTimeSetRightUp.TabIndex = 0;
             this.btnTimeSetRightUp.Text = "+";
             this.btnTimeSetRightUp.UseVisualStyleBackColor = true;
+            this.btnTimeSetRightUp.Click += new System.EventHandler(this.btnTimeSetAdd_Click);
             // 
             // gbVolume
             // 
@@ -571,16 +655,15 @@
             this.timerAnimation.Interval = 1000;
             this.timerAnimation.Tick += new System.EventHandler(this.timerAnimationTick);
             // 
-            // lblTimerAnimation
+            // label4
             // 
-            this.lblTimerAnimation.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimerAnimation.Location = new System.Drawing.Point(201, 45);
-            this.lblTimerAnimation.Name = "lblTimerAnimation";
-            this.lblTimerAnimation.Size = new System.Drawing.Size(14, 55);
-            this.lblTimerAnimation.TabIndex = 0;
-            this.lblTimerAnimation.Text = ":";
-            this.lblTimerAnimation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTimerAnimation.UseCompatibleTextRendering = true;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(9, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "10:30";
             // 
             // Form1
             // 
@@ -668,6 +751,12 @@
         private System.Windows.Forms.Label lblLuminosite;
         private System.Windows.Forms.Timer timerAnimation;
         private System.Windows.Forms.Label lblTimerAnimation;
+        private System.Windows.Forms.Button btnDisplayClock;
+        private System.Windows.Forms.Button btnTimeZone;
+        private System.Windows.Forms.Label lblConfigurationValue;
+        private System.Windows.Forms.Label lblConfigurationField;
+        private System.Windows.Forms.Label lblConfigurationName;
+        private System.Windows.Forms.Label label4;
     }
 }
 
