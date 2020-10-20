@@ -155,7 +155,7 @@ namespace M306_Bleu_Projet
 
             if (HorlogeManager.Horloge.Statut == HorlogeState.AlarmConfiguration) // retour depuis config de l'alarme
             {
-
+                HideConfigurationAffichage();
             }
 
             HorlogeManager.Horloge.Statut = HorlogeState.NaturalConfiguration;

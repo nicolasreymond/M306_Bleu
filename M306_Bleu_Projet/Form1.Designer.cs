@@ -42,6 +42,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.lblAlarmSettingsHour = new System.Windows.Forms.Label();
             this.lblAlarmActiveOnSettings = new System.Windows.Forms.Label();
             this.gbLuminosite = new System.Windows.Forms.GroupBox();
@@ -81,7 +82,6 @@
             this.timerGlobal = new System.Windows.Forms.Timer(this.components);
             this.timerButtons = new System.Windows.Forms.Timer(this.components);
             this.timerAnimation = new System.Windows.Forms.Timer(this.components);
-            this.label4 = new System.Windows.Forms.Label();
             this.gbHorlogeFront.SuspendLayout();
             this.gbClock.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -128,6 +128,7 @@
             this.lblConfigurationValue.Size = new System.Drawing.Size(168, 20);
             this.lblConfigurationValue.TabIndex = 1;
             this.lblConfigurationValue.Text = "Configuration Value";
+            this.lblConfigurationValue.Visible = false;
             // 
             // lblConfigurationField
             // 
@@ -139,6 +140,7 @@
             this.lblConfigurationField.Size = new System.Drawing.Size(161, 20);
             this.lblConfigurationField.TabIndex = 1;
             this.lblConfigurationField.Text = "Configuration Field";
+            this.lblConfigurationField.Visible = false;
             // 
             // lblConfigurationName
             // 
@@ -150,6 +152,7 @@
             this.lblConfigurationName.Size = new System.Drawing.Size(195, 24);
             this.lblConfigurationName.TabIndex = 1;
             this.lblConfigurationName.Text = "Configuration Name";
+            this.lblConfigurationName.Visible = false;
             // 
             // lblSony
             // 
@@ -246,6 +249,16 @@
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Réglage alarme";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(9, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "10:30";
             // 
             // lblAlarmSettingsHour
             // 
@@ -654,16 +667,6 @@
             // 
             this.timerAnimation.Interval = 1000;
             this.timerAnimation.Tick += new System.EventHandler(this.timerAnimationTick);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "10:30";
             // 
             // Form1
             // 
