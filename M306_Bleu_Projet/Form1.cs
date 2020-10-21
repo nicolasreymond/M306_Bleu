@@ -70,6 +70,17 @@ namespace M306_Bleu_Projet
         ////////////////////////
         /////BUTTONS CLICKS/////
         ////////////////////////
+        
+        // BTN VOLUME +
+        private void btnVolumeUpClick(object sender, EventArgs e)
+        {
+            lblVolumeGlobal.Text = HorlogeManager.AddVolume().ToString();
+        }
+
+        private void btnVolumeDownClick(object sender, EventArgs e)
+        {
+            lblVolumeGlobal.Text = HorlogeManager.RemoveVolume().ToString();
+        }
 
         // SNOOZE CLICK
         private void btnSnoozeClick(object sender, EventArgs e)

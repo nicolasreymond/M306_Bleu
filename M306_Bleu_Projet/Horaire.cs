@@ -68,15 +68,6 @@ namespace M306_Bleu_Projet
             }
         }
 
-        public Horaire()
-        {
-            Annee = DateTime.Now.Year;
-            Mois = DateTime.Now.Month;
-            Jour = DateTime.Now.Day;
-            Heure = DateTime.Now.Hour;
-            Minute = DateTime.Now.Minute;
-        }
-
         public int Seconde
         {
             get => seconde;
@@ -90,5 +81,17 @@ namespace M306_Bleu_Projet
                     seconde = value;
             }
         }
+
+        public Horaire()
+        {
+            Annee = DateTime.Now.Year;
+            Mois = DateTime.Now.Month;
+            Jour = DateTime.Now.Day;
+            Heure = DateTime.Now.Hour;
+            Minute = DateTime.Now.Minute;
+            Seconde = 0;
+        }
+
+        
     }
 }

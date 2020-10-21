@@ -34,6 +34,7 @@ namespace M306_Bleu_Projet
     public class Horloge 
     {
         private int luminosite;
+        private int volume;
 
         private HorlogeFormat format;
 
@@ -46,8 +47,6 @@ namespace M306_Bleu_Projet
         private Horaire configurationHorloge = new Horaire();
         private Horaire configurationAlarmeA = new Horaire();
         private Horaire configurationAlarmeB = new Horaire();
-
-
 
         internal HorlogeState Statut { get => statut; set => statut = value; }
         internal HorlogeFormat Format { get => format; set => format = value; }
@@ -70,12 +69,25 @@ namespace M306_Bleu_Projet
         public Horaire ConfigurationAlarmeA { get => configurationAlarmeA; set => configurationAlarmeA = value; }
         public Horaire ConfigurationAlarmeB { get => configurationAlarmeB; set => configurationAlarmeB = value; }
         public DateTime NouvelleHeure { get => nouvelleHeure; set => nouvelleHeure = value; }
+        public int Volume { 
+            get => volume;
+            set
+            {
+                if (value > 30)
+                    volume = 1;
+                else if (value < 1)
+                    volume = 30;
+                else
+                    volume = value;
+            }
+        }
 
         public Horloge()
         {
             Statut = HorlogeState.NaturalConfiguration;    // Configuration de base
             Format = HorlogeFormat.Europe;                 // Format d'horloge de base
             Luminosite = 1;                                // Luminosité de base
+            Volume = 15;
             HeureHorloge = DateTime.Now;
             NouvelleHeure = DateTime.Now;
         }

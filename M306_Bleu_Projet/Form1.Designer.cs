@@ -45,6 +45,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblAlarmSettingsHour = new System.Windows.Forms.Label();
             this.lblAlarmActiveOnSettings = new System.Windows.Forms.Label();
+            this.gbVolumeGlobal = new System.Windows.Forms.GroupBox();
+            this.lblVolumeGlobal = new System.Windows.Forms.Label();
             this.gbLuminosite = new System.Windows.Forms.GroupBox();
             this.lblLuminosite = new System.Windows.Forms.Label();
             this.gbNatureSound = new System.Windows.Forms.GroupBox();
@@ -86,6 +88,7 @@
             this.gbClock.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.gbVolumeGlobal.SuspendLayout();
             this.gbLuminosite.SuspendLayout();
             this.gbNatureSound.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -108,6 +111,7 @@
             this.gbHorlogeFront.Controls.Add(this.gbClock);
             this.gbHorlogeFront.Controls.Add(this.groupBox5);
             this.gbHorlogeFront.Controls.Add(this.groupBox4);
+            this.gbHorlogeFront.Controls.Add(this.gbVolumeGlobal);
             this.gbHorlogeFront.Controls.Add(this.gbLuminosite);
             this.gbHorlogeFront.Controls.Add(this.gbNatureSound);
             this.gbHorlogeFront.Controls.Add(this.groupBox7);
@@ -278,6 +282,26 @@
             this.lblAlarmActiveOnSettings.Size = new System.Drawing.Size(26, 13);
             this.lblAlarmActiveOnSettings.TabIndex = 0;
             this.lblAlarmActiveOnSettings.Text = "A/B";
+            // 
+            // gbVolumeGlobal
+            // 
+            this.gbVolumeGlobal.Controls.Add(this.lblVolumeGlobal);
+            this.gbVolumeGlobal.Location = new System.Drawing.Point(7, 219);
+            this.gbVolumeGlobal.Name = "gbVolumeGlobal";
+            this.gbVolumeGlobal.Size = new System.Drawing.Size(110, 60);
+            this.gbVolumeGlobal.TabIndex = 1;
+            this.gbVolumeGlobal.TabStop = false;
+            this.gbVolumeGlobal.Text = "Volume global";
+            // 
+            // lblVolumeGlobal
+            // 
+            this.lblVolumeGlobal.AutoSize = true;
+            this.lblVolumeGlobal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVolumeGlobal.Location = new System.Drawing.Point(37, 25);
+            this.lblVolumeGlobal.Name = "lblVolumeGlobal";
+            this.lblVolumeGlobal.Size = new System.Drawing.Size(30, 24);
+            this.lblVolumeGlobal.TabIndex = 0;
+            this.lblVolumeGlobal.Text = "15";
             // 
             // gbLuminosite
             // 
@@ -489,6 +513,7 @@
             this.btnVolumeDown.TabIndex = 0;
             this.btnVolumeDown.Text = "-";
             this.btnVolumeDown.UseVisualStyleBackColor = true;
+            this.btnVolumeDown.Click += new System.EventHandler(this.btnVolumeDownClick);
             // 
             // btnVolumeUp
             // 
@@ -499,6 +524,7 @@
             this.btnVolumeUp.TabIndex = 0;
             this.btnVolumeUp.Text = "+";
             this.btnVolumeUp.UseVisualStyleBackColor = true;
+            this.btnVolumeUp.Click += new System.EventHandler(this.btnVolumeUpClick);
             // 
             // gbBand
             // 
@@ -686,6 +712,8 @@
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.gbVolumeGlobal.ResumeLayout(false);
+            this.gbVolumeGlobal.PerformLayout();
             this.gbLuminosite.ResumeLayout(false);
             this.gbLuminosite.PerformLayout();
             this.gbNatureSound.ResumeLayout(false);
@@ -760,6 +788,8 @@
         private System.Windows.Forms.Label lblConfigurationField;
         private System.Windows.Forms.Label lblConfigurationName;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox gbVolumeGlobal;
+        private System.Windows.Forms.Label lblVolumeGlobal;
     }
 }
 

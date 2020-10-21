@@ -34,19 +34,20 @@ namespace M306_Bleu_Projet
             return Horloge.Luminosite;
         }
 
-        public int incrementeConfiguration(int config)
+        public int AddVolume()
         {
-            config += 1;
+            Horloge.Volume += 1;
 
-            return config;
+            return Horloge.Volume;
         }
 
-        public int decrementeConfiguration(int config)
+        public int RemoveVolume()
         {
-            config -= 1;
+            Horloge.Volume -= 1;
 
-            return config;
+            return Horloge.Volume;
         }
+
 
         public void ConfigureHoraire(bool addition)
         {
