@@ -107,6 +107,12 @@ namespace M306_Bleu_Projet
             {
                 case HorlogeState.NaturalConfiguration:
 
+                    // Groupbox Année ( information )
+                    gbAnnee.Visible = false;
+
+                    // Groupbox Date ( information )
+                    gbDate.Visible = false;
+
                     // buttons Alarm ON/OFF
                     btnAlarmOnOffLeft.Enabled = true;
                     btnAlarmOnOffRight.Enabled = true;
@@ -146,6 +152,12 @@ namespace M306_Bleu_Projet
                     break;
                 case HorlogeState.NatureSoundConfiguration:
 
+                    // Groupbox Année ( information )
+                    gbAnnee.Visible = false;
+
+                    // Groupbox Date ( information )
+                    gbDate.Visible = false;
+
                     // buttons Alarm ON/OFF
                     btnAlarmOnOffLeft.Enabled = false;
                     btnAlarmOnOffRight.Enabled = false;
@@ -174,6 +186,12 @@ namespace M306_Bleu_Projet
 
                     break;
                 case HorlogeState.AlarmConfiguration:
+
+                    // Groupbox Année ( information )
+                    gbAnnee.Visible = false;
+
+                    // Groupbox Date ( information )
+                    gbDate.Visible = false;
 
                     // buttons Alarm ON/OFF
                     btnAlarmOnOffLeft.Enabled = false;
