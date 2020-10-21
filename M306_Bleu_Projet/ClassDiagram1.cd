@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="M306_Bleu_Projet.Form1" Collapsed="true">
+    <Position X="1.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IE4IAWFmACgBRTHqABidgQQKgCAAQEQCwiQEACASADg=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="M306_Bleu_Projet.HorlogeManager">
+    <Position X="5.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAAA=</HashCode>
+      <FileName>HorlogeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="M306_Bleu_Projet.Horloge">
+    <Position X="8" Y="1" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAGIACAAgAAAAAQCQAAAggAAAAAAAACAAAAAiA=</HashCode>
+      <FileName>Horloge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="M306_Bleu_Projet.Horaire">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAEAIAAAAKAAAACAAAAAACBAgAAgQIAAAAA=</HashCode>
+      <FileName>Horaire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
