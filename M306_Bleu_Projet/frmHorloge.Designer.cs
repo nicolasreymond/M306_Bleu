@@ -1,6 +1,6 @@
 ﻿namespace M306_Bleu_Projet
 {
-    partial class Form1
+    partial class frmHorloge
     {
         /// <summary>
         /// Required designer variable.
@@ -84,6 +84,10 @@
             this.timerGlobal = new System.Windows.Forms.Timer(this.components);
             this.timerButtons = new System.Windows.Forms.Timer(this.components);
             this.timerAnimation = new System.Windows.Forms.Timer(this.components);
+            this.lblAnnee = new System.Windows.Forms.Label();
+            this.gbAnnee = new System.Windows.Forms.GroupBox();
+            this.gbDate = new System.Windows.Forms.GroupBox();
+            this.lblDate = new System.Windows.Forms.Label();
             this.gbHorlogeFront.SuspendLayout();
             this.gbClock.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -100,6 +104,8 @@
             this.gbBand.SuspendLayout();
             this.gbAlarmReset.SuspendLayout();
             this.gbNatureSoundEffects.SuspendLayout();
+            this.gbAnnee.SuspendLayout();
+            this.gbDate.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbHorlogeFront
@@ -171,13 +177,15 @@
             // 
             // gbClock
             // 
+            this.gbClock.Controls.Add(this.gbDate);
+            this.gbClock.Controls.Add(this.gbAnnee);
             this.gbClock.Controls.Add(this.lblTimeFormat);
             this.gbClock.Controls.Add(this.lblTimerAnimation);
             this.gbClock.Controls.Add(this.lblTime);
             this.gbClock.Controls.Add(this.groupBox3);
             this.gbClock.Location = new System.Drawing.Point(199, 138);
             this.gbClock.Name = "gbClock";
-            this.gbClock.Size = new System.Drawing.Size(397, 130);
+            this.gbClock.Size = new System.Drawing.Size(397, 141);
             this.gbClock.TabIndex = 0;
             this.gbClock.TabStop = false;
             // 
@@ -185,7 +193,7 @@
             // 
             this.lblTimeFormat.AutoSize = true;
             this.lblTimeFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeFormat.Location = new System.Drawing.Point(84, 73);
+            this.lblTimeFormat.Location = new System.Drawing.Point(170, 68);
             this.lblTimeFormat.Name = "lblTimeFormat";
             this.lblTimeFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblTimeFormat.Size = new System.Drawing.Size(34, 20);
@@ -195,7 +203,7 @@
             // lblTimerAnimation
             // 
             this.lblTimerAnimation.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimerAnimation.Location = new System.Drawing.Point(201, 45);
+            this.lblTimerAnimation.Location = new System.Drawing.Point(271, 40);
             this.lblTimerAnimation.Name = "lblTimerAnimation";
             this.lblTimerAnimation.Size = new System.Drawing.Size(14, 55);
             this.lblTimerAnimation.TabIndex = 0;
@@ -206,7 +214,7 @@
             // lblTime
             // 
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(124, 45);
+            this.lblTime.Location = new System.Drawing.Point(194, 40);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(177, 55);
             this.lblTime.TabIndex = 0;
@@ -694,6 +702,47 @@
             this.timerAnimation.Interval = 1000;
             this.timerAnimation.Tick += new System.EventHandler(this.timerAnimationTick);
             // 
+            // lblAnnee
+            // 
+            this.lblAnnee.AutoSize = true;
+            this.lblAnnee.Location = new System.Drawing.Point(35, 23);
+            this.lblAnnee.Name = "lblAnnee";
+            this.lblAnnee.Size = new System.Drawing.Size(31, 13);
+            this.lblAnnee.TabIndex = 2;
+            this.lblAnnee.Text = "2020";
+            // 
+            // gbAnnee
+            // 
+            this.gbAnnee.Controls.Add(this.lblAnnee);
+            this.gbAnnee.Location = new System.Drawing.Point(7, 11);
+            this.gbAnnee.Name = "gbAnnee";
+            this.gbAnnee.Size = new System.Drawing.Size(102, 56);
+            this.gbAnnee.TabIndex = 3;
+            this.gbAnnee.TabStop = false;
+            this.gbAnnee.Text = "Année";
+            this.gbAnnee.Visible = false;
+            // 
+            // gbDate
+            // 
+            this.gbDate.Controls.Add(this.lblDate);
+            this.gbDate.Location = new System.Drawing.Point(6, 75);
+            this.gbDate.Name = "gbDate";
+            this.gbDate.Size = new System.Drawing.Size(102, 56);
+            this.gbDate.TabIndex = 3;
+            this.gbDate.TabStop = false;
+            this.gbDate.Text = "Date";
+            this.gbDate.Visible = false;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(13, 25);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(61, 13);
+            this.lblDate.TabIndex = 2;
+            this.lblDate.Text = "21.10.2020";
+            this.lblDate.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -729,6 +778,10 @@
             this.gbBand.ResumeLayout(false);
             this.gbAlarmReset.ResumeLayout(false);
             this.gbNatureSoundEffects.ResumeLayout(false);
+            this.gbAnnee.ResumeLayout(false);
+            this.gbAnnee.PerformLayout();
+            this.gbDate.ResumeLayout(false);
+            this.gbDate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -790,6 +843,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox gbVolumeGlobal;
         private System.Windows.Forms.Label lblVolumeGlobal;
+        private System.Windows.Forms.GroupBox gbDate;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.GroupBox gbAnnee;
+        private System.Windows.Forms.Label lblAnnee;
     }
 }
 
