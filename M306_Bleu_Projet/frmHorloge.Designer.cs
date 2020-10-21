@@ -35,6 +35,10 @@
             this.lblConfigurationName = new System.Windows.Forms.Label();
             this.lblSony = new System.Windows.Forms.Label();
             this.gbClock = new System.Windows.Forms.GroupBox();
+            this.gbDate = new System.Windows.Forms.GroupBox();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.gbAnnee = new System.Windows.Forms.GroupBox();
+            this.lblAnnee = new System.Windows.Forms.Label();
             this.lblTimeFormat = new System.Windows.Forms.Label();
             this.lblTimerAnimation = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
@@ -84,12 +88,11 @@
             this.timerGlobal = new System.Windows.Forms.Timer(this.components);
             this.timerButtons = new System.Windows.Forms.Timer(this.components);
             this.timerAnimation = new System.Windows.Forms.Timer(this.components);
-            this.lblAnnee = new System.Windows.Forms.Label();
-            this.gbAnnee = new System.Windows.Forms.GroupBox();
-            this.gbDate = new System.Windows.Forms.GroupBox();
-            this.lblDate = new System.Windows.Forms.Label();
+            this.timerHideElement = new System.Windows.Forms.Timer(this.components);
             this.gbHorlogeFront.SuspendLayout();
             this.gbClock.SuspendLayout();
+            this.gbDate.SuspendLayout();
+            this.gbAnnee.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.gbVolumeGlobal.SuspendLayout();
@@ -104,8 +107,6 @@
             this.gbBand.SuspendLayout();
             this.gbAlarmReset.SuspendLayout();
             this.gbNatureSoundEffects.SuspendLayout();
-            this.gbAnnee.SuspendLayout();
-            this.gbDate.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbHorlogeFront
@@ -188,6 +189,46 @@
             this.gbClock.Size = new System.Drawing.Size(397, 141);
             this.gbClock.TabIndex = 0;
             this.gbClock.TabStop = false;
+            // 
+            // gbDate
+            // 
+            this.gbDate.Controls.Add(this.lblDate);
+            this.gbDate.Location = new System.Drawing.Point(6, 75);
+            this.gbDate.Name = "gbDate";
+            this.gbDate.Size = new System.Drawing.Size(102, 56);
+            this.gbDate.TabIndex = 3;
+            this.gbDate.TabStop = false;
+            this.gbDate.Text = "Date";
+            this.gbDate.Visible = false;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(13, 25);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(61, 13);
+            this.lblDate.TabIndex = 2;
+            this.lblDate.Text = "21.10.2020";
+            // 
+            // gbAnnee
+            // 
+            this.gbAnnee.Controls.Add(this.lblAnnee);
+            this.gbAnnee.Location = new System.Drawing.Point(7, 11);
+            this.gbAnnee.Name = "gbAnnee";
+            this.gbAnnee.Size = new System.Drawing.Size(102, 56);
+            this.gbAnnee.TabIndex = 3;
+            this.gbAnnee.TabStop = false;
+            this.gbAnnee.Text = "Année";
+            this.gbAnnee.Visible = false;
+            // 
+            // lblAnnee
+            // 
+            this.lblAnnee.AutoSize = true;
+            this.lblAnnee.Location = new System.Drawing.Point(35, 23);
+            this.lblAnnee.Name = "lblAnnee";
+            this.lblAnnee.Size = new System.Drawing.Size(31, 13);
+            this.lblAnnee.TabIndex = 2;
+            this.lblAnnee.Text = "2020";
             // 
             // lblTimeFormat
             // 
@@ -433,7 +474,7 @@
             this.btnTimeZone.TabIndex = 0;
             this.btnTimeZone.Text = "DATE/TIME ZONE";
             this.btnTimeZone.UseVisualStyleBackColor = true;
-            this.btnTimeZone.Click += new System.EventHandler(this.btnAlarmOffClick);
+            this.btnTimeZone.Click += new System.EventHandler(this.btnDateTimeClick);
             // 
             // gbTimeSetLeft
             // 
@@ -702,61 +743,29 @@
             this.timerAnimation.Interval = 1000;
             this.timerAnimation.Tick += new System.EventHandler(this.timerAnimationTick);
             // 
-            // lblAnnee
+            // timerHideElement
             // 
-            this.lblAnnee.AutoSize = true;
-            this.lblAnnee.Location = new System.Drawing.Point(35, 23);
-            this.lblAnnee.Name = "lblAnnee";
-            this.lblAnnee.Size = new System.Drawing.Size(31, 13);
-            this.lblAnnee.TabIndex = 2;
-            this.lblAnnee.Text = "2020";
+            this.timerHideElement.Interval = 2000;
+            this.timerHideElement.Tick += new System.EventHandler(this.timerHideElement_Tick);
             // 
-            // gbAnnee
-            // 
-            this.gbAnnee.Controls.Add(this.lblAnnee);
-            this.gbAnnee.Location = new System.Drawing.Point(7, 11);
-            this.gbAnnee.Name = "gbAnnee";
-            this.gbAnnee.Size = new System.Drawing.Size(102, 56);
-            this.gbAnnee.TabIndex = 3;
-            this.gbAnnee.TabStop = false;
-            this.gbAnnee.Text = "Année";
-            this.gbAnnee.Visible = false;
-            // 
-            // gbDate
-            // 
-            this.gbDate.Controls.Add(this.lblDate);
-            this.gbDate.Location = new System.Drawing.Point(6, 75);
-            this.gbDate.Name = "gbDate";
-            this.gbDate.Size = new System.Drawing.Size(102, 56);
-            this.gbDate.TabIndex = 3;
-            this.gbDate.TabStop = false;
-            this.gbDate.Text = "Date";
-            this.gbDate.Visible = false;
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(13, 25);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(61, 13);
-            this.lblDate.TabIndex = 2;
-            this.lblDate.Text = "21.10.2020";
-            this.lblDate.Visible = false;
-            // 
-            // Form1
+            // frmHorloge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 545);
             this.Controls.Add(this.gbHorlogeDessus);
             this.Controls.Add(this.gbHorlogeFront);
-            this.Name = "Form1";
+            this.Name = "frmHorloge";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbHorlogeFront.ResumeLayout(false);
             this.gbHorlogeFront.PerformLayout();
             this.gbClock.ResumeLayout(false);
             this.gbClock.PerformLayout();
+            this.gbDate.ResumeLayout(false);
+            this.gbDate.PerformLayout();
+            this.gbAnnee.ResumeLayout(false);
+            this.gbAnnee.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -778,10 +787,6 @@
             this.gbBand.ResumeLayout(false);
             this.gbAlarmReset.ResumeLayout(false);
             this.gbNatureSoundEffects.ResumeLayout(false);
-            this.gbAnnee.ResumeLayout(false);
-            this.gbAnnee.PerformLayout();
-            this.gbDate.ResumeLayout(false);
-            this.gbDate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -847,6 +852,7 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.GroupBox gbAnnee;
         private System.Windows.Forms.Label lblAnnee;
+        private System.Windows.Forms.Timer timerHideElement;
     }
 }
 

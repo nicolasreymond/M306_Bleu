@@ -207,6 +207,96 @@ namespace M306_Bleu_Projet
                     // button date/time zone
                     btnTimeZone.Enabled = false;
                     break;
+                case HorlogeState.AffichageDate:
+
+                    // Groupbox Année ( information )
+                    gbAnnee.Visible = false;
+
+                    // Groupbox Date ( information )
+                    gbDate.Visible = true;
+
+                    // buttons Alarm ON/OFF
+                    btnAlarmOnOffLeft.Enabled = true;
+                    btnAlarmOnOffRight.Enabled = true;
+
+                    // buttons - & + ( TIME SET)
+                    btnTimeSetLeftDown.Enabled = true;
+                    btnTimeSetLeftUp.Enabled = true;
+                    btnTimeSetRightDown.Enabled = true;
+                    btnTimeSetRightUp.Enabled = true;
+
+                    // buttons nature sounds
+                    btnSonVagues.Enabled = true;
+                    btnSonRuisseau.Enabled = true;
+                    btnSonPluie.Enabled = true;
+                    btnSonPlongee.Enabled = true;
+                    btnSonOiseau.Enabled = true;
+
+                    // button Radio
+                    btnRadio.Enabled = true;
+
+                    // button Sleep
+                    btnSleep.Enabled = true;
+
+                    // button Snooze
+                    btnSnooze.Enabled = true;
+
+                    // buttons Volume
+                    btnVolumeDown.Enabled = true;
+                    btnVolumeUp.Enabled = true;
+
+                    // button Display/clock
+                    btnDisplayClock.Enabled = true;
+
+                    // button date/time zone
+                    btnTimeZone.Enabled = true;
+
+                    break;
+                case HorlogeState.AffichageAnnee:
+
+                    // Groupbox Année ( information )
+                    gbAnnee.Visible = true;
+
+                    // Groupbox Date ( information )
+                    gbDate.Visible = false;
+
+                    // buttons Alarm ON/OFF
+                    btnAlarmOnOffLeft.Enabled = true;
+                    btnAlarmOnOffRight.Enabled = true;
+
+                    // buttons - & + ( TIME SET)
+                    btnTimeSetLeftDown.Enabled = true;
+                    btnTimeSetLeftUp.Enabled = true;
+                    btnTimeSetRightDown.Enabled = true;
+                    btnTimeSetRightUp.Enabled = true;
+
+                    // buttons nature sounds
+                    btnSonVagues.Enabled = true;
+                    btnSonRuisseau.Enabled = true;
+                    btnSonPluie.Enabled = true;
+                    btnSonPlongee.Enabled = true;
+                    btnSonOiseau.Enabled = true;
+
+                    // button Radio
+                    btnRadio.Enabled = true;
+
+                    // button Sleep
+                    btnSleep.Enabled = true;
+
+                    // button Snooze
+                    btnSnooze.Enabled = true;
+
+                    // buttons Volume
+                    btnVolumeDown.Enabled = true;
+                    btnVolumeUp.Enabled = true;
+
+                    // button Display/clock
+                    btnDisplayClock.Enabled = true;
+
+                    // button date/time zone
+                    btnTimeZone.Enabled = true;
+
+                    break;
                 default:
                     break;
             }
@@ -250,6 +340,14 @@ namespace M306_Bleu_Projet
         private void timerButtonsTick(object sender, EventArgs e)
         {
             this.boutonAppuiSeconde++;
+        }
+
+        private void timerHideElement_Tick(object sender, EventArgs e)
+        {
+            timerHideElement.Stop();
+            // remove element
+            gbDate.Visible = false;
+            HorlogeManager.Horloge.Statut = HorlogeState.NaturalConfiguration;
         }
 
         #endregion
@@ -454,6 +552,27 @@ namespace M306_Bleu_Projet
 
         #endregion
 
+        private void btnDateTimeClick(object sender, EventArgs e)
+        {
+            if ( HorlogeManager.Horloge.Statut == HorlogeState.NaturalConfiguration ) 
+            {
+                // entrer dans état -> show année
+                HorlogeManager.Horloge.Statut = HorlogeState.AffichageAnnee;
+                lblAnnee.Text = HorlogeManager.GetCustomFormat(HorlogeManager.Horloge.GetHeure(), "yyyy"); // année
+
+            } else if (HorlogeManager.Horloge.Statut == HorlogeState.AffichageAnnee)
+            {
+                // entrer dans état -> show année
+                HorlogeManager.Horloge.Statut = HorlogeState.AffichageDate;
+                lblDate.Text = HorlogeManager.GetCustomFormat(HorlogeManager.Horloge.GetHeure(), "dd MMMM"); // Mois-jour
+
+                // après 2 seconde, faire disparaitre element date
+                timerHideElement.Start();
+            }
+
+            UpdateView();
+        }
+
         #endregion
 
         #region [EVENTS] MOUSE UP & DOWN
@@ -513,5 +632,7 @@ namespace M306_Bleu_Projet
         #endregion
 
         #endregion
+
+        
     }
 }

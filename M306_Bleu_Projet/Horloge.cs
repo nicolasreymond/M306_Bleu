@@ -12,7 +12,9 @@ namespace M306_Bleu_Projet
         NatureSoundConfiguration, // nature sound statut
         AlarmConfiguration,
         AlarmAConfiguration,
-        AlarmBConfiguration
+        AlarmBConfiguration,
+        AffichageAnnee,
+        AffichageDate,
     }
 
     enum HorlogeFormat

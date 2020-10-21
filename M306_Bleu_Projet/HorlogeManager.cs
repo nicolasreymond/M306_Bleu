@@ -27,6 +27,11 @@ namespace M306_Bleu_Projet
             return heure.ToString("hh mm");
         }
 
+        public string GetCustomFormat(DateTime heure, string format)
+        {
+            return heure.ToString(format);
+        }
+
         public int ChangeLuminosite()
         {
             Horloge.Luminosite += 1;
