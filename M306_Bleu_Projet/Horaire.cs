@@ -21,6 +21,8 @@ namespace M306_Bleu_Projet
         private int volume;
         private bool isConfigured;
         private bool isActive;
+        private bool sleep;
+        private bool isRunning;
 
 
         public int Annee { get => annee; set => annee = value; }
@@ -111,6 +113,8 @@ namespace M306_Bleu_Projet
         internal AlarmNatureSoundPresets NaturePreset { get => naturePreset; set => naturePreset = value; }
         public bool IsConfigured { get => isConfigured; set => isConfigured = value; }
         public bool IsActive { get => isActive; set => isActive = value; }
+        public bool Sleep { get => sleep; set => sleep = value; }
+        public bool IsRunning { get => isRunning; set => isRunning = value; }
 
         public Horaire()
         {
@@ -119,7 +123,7 @@ namespace M306_Bleu_Projet
             Jour = DateTime.Now.Day;
             Heure = DateTime.Now.Hour;
             Minute = DateTime.Now.Minute;
-            Seconde = 0;
+            Seconde = 1;
             Type = AlarmType.NatureSound;
             Periode = AlarmPeriodes.Weekday;
             RadioType = AlarmRadioType.AM;
@@ -127,6 +131,13 @@ namespace M306_Bleu_Projet
             Volume = 15;
             IsConfigured = false;
             IsActive = false;
+            IsRunning = false;
+            Sleep = false;
+        }
+
+        public DateTime GetHeureConfiguree()
+        {
+            return new DateTime(Annee, Mois, Jour, Heure, Minute, Seconde);
         }
     }
 }

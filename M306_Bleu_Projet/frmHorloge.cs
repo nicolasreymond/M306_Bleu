@@ -179,9 +179,44 @@ namespace M306_Bleu_Projet
                 lblAlarmHeureB.Text = "-";
             }
 
+            hideAlarm(lblAlarmA);
+            hideAlarm(lblAlarmB);
+
             switch (HorlogeManager.Horloge.Statut)
             {
                 case HorlogeEtat.NaturalConfiguration:
+
+                    if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive)
+                    {
+                        lblAlarmAActive.Text = "ON";
+                        if (!HorlogeManager.Horloge.ConfigurationAlarmeA.Sleep)
+                        {
+                            if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsRunning)
+                            {
+                                showAlarm(lblAlarmA);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        lblAlarmAActive.Text = "OFF";
+                    }
+
+                    if (HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive)
+                    {
+                        lblAlarmBActive.Text = "ON";
+                        if (!HorlogeManager.Horloge.ConfigurationAlarmeB.Sleep)
+                        {
+                            if (HorlogeManager.Horloge.ConfigurationAlarmeB.IsRunning)
+                            {
+                                showAlarm(lblAlarmB);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        lblAlarmBActive.Text = "OFF";
+                    }
 
                     lblConfigurationName.Visible = false;
                     lblConfigurationField.Visible = false;
@@ -209,9 +244,6 @@ namespace M306_Bleu_Projet
                     btnSonPluie.Enabled = true;
                     btnSonPlongee.Enabled = true;
                     btnSonOiseau.Enabled = true;
-
-                    // button Radio
-                    btnRadio.Enabled = true;
 
                     // button Sleep
                     btnSleep.Enabled = true;
@@ -251,9 +283,6 @@ namespace M306_Bleu_Projet
                     btnTimeSetLeftUp.Enabled = false;
                     btnTimeSetRightDown.Enabled = false;
                     btnTimeSetRightUp.Enabled = false;
-
-                    // button Radio
-                    btnRadio.Enabled = false;
 
                     // button Sleep
                     btnSleep.Enabled = false;
@@ -298,9 +327,6 @@ namespace M306_Bleu_Projet
                     btnSonPlongee.Enabled = false;
                     btnSonOiseau.Enabled = false;
 
-                    // button Radio
-                    btnRadio.Enabled = false;
-
                     // button Sleep
                     btnSleep.Enabled = false;
 
@@ -341,9 +367,6 @@ namespace M306_Bleu_Projet
                     btnSonPluie.Enabled = true;
                     btnSonPlongee.Enabled = true;
                     btnSonOiseau.Enabled = true;
-
-                    // button Radio
-                    btnRadio.Enabled = true;
 
                     // button Sleep
                     btnSleep.Enabled = true;
@@ -390,9 +413,6 @@ namespace M306_Bleu_Projet
                     btnSonPluie.Enabled = true;
                     btnSonPlongee.Enabled = true;
                     btnSonOiseau.Enabled = true;
-
-                    // button Radio
-                    btnRadio.Enabled = true;
 
                     // button Sleep
                     btnSleep.Enabled = true;
@@ -450,9 +470,6 @@ namespace M306_Bleu_Projet
                     btnSonPlongee.Enabled = false;
                     btnSonOiseau.Enabled = false;
 
-                    // button Radio
-                    btnRadio.Enabled = false;
-
                     // button Sleep
                     btnSleep.Enabled = false;
 
@@ -504,9 +521,6 @@ namespace M306_Bleu_Projet
                     btnSonPlongee.Enabled = false;
                     btnSonOiseau.Enabled = false;
 
-                    // button Radio
-                    btnRadio.Enabled = false;
-
                     // button Sleep
                     btnSleep.Enabled = false;
 
@@ -538,10 +552,95 @@ namespace M306_Bleu_Projet
 
         #region [EVENTS] TICKS
 
+        private void showAlarm(Label theAlarm)
+        {
+            theAlarm.Visible = true;
+        }
+
+        private void hideAlarm(Label theAlarm)
+        {
+            theAlarm.Visible = false;
+        }
+
         // Son rôle est de récupérer l'heure configurée de l'horloge
         private void timerGlobal_Tick(object sender, EventArgs e)
         {
             lblTime.Text = HorlogeManager.GetHeureFormatee(HorlogeManager.Horloge.GetHeure());
+
+            Console.WriteLine(HorlogeManager.Horloge.ConfigurationAlarmeA.Periode.ToString());
+            //Console.WriteLine(HorlogeManager.Horloge.ConfigurationAlarme.Periode.ToString());
+
+            if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive)
+            {
+                if (HorlogeManager.Horloge.ConfigurationAlarmeA.Sleep == false)
+                {
+                    if (
+                        DateTime.Now.Hour == HorlogeManager.Horloge.ConfigurationAlarmeA.GetHeureConfiguree().Hour &&
+                        DateTime.Now.Minute == HorlogeManager.Horloge.ConfigurationAlarmeA.GetHeureConfiguree().Minute
+                        )
+                    {
+                        // check si période OK
+
+                        if (HorlogeManager.Horloge.ConfigurationAlarmeA.Periode == AlarmPeriodes.Weekday)
+                        {
+                            // si pas samedi et dimanche
+                            if (DateTime.Now.DayOfWeek != DayOfWeek.Saturday && DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
+                            {
+                                HorlogeManager.Horloge.ConfigurationAlarmeA.IsRunning = true;
+                            }
+                        } else if (HorlogeManager.Horloge.ConfigurationAlarmeA.Periode == AlarmPeriodes.Weekend)
+                        {
+                            if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+                            {
+                                HorlogeManager.Horloge.ConfigurationAlarmeA.IsRunning = true;
+                            }
+                        } else
+                        {
+                            HorlogeManager.Horloge.ConfigurationAlarmeA.IsRunning = true;
+                        }
+                    } else
+                    {
+                        HorlogeManager.Horloge.ConfigurationAlarmeA.IsRunning = false;
+                    }
+                }
+            }
+
+            if (HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive) // Si alarme active
+            {
+                if (HorlogeManager.Horloge.ConfigurationAlarmeB.Sleep == false) // Si snooze pas activé
+                {
+                    if (
+                        DateTime.Now.Hour ==    HorlogeManager.Horloge.ConfigurationAlarmeB.GetHeureConfiguree().Hour &&
+                        DateTime.Now.Minute ==  HorlogeManager.Horloge.ConfigurationAlarmeB.GetHeureConfiguree().Minute
+                        )
+                    {
+                        if (HorlogeManager.Horloge.ConfigurationAlarmeB.Periode == AlarmPeriodes.Weekday)
+                        {
+                            // si pas samedi et dimanche
+                            if (DateTime.Now.DayOfWeek != DayOfWeek.Saturday && DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
+                            {
+                                HorlogeManager.Horloge.ConfigurationAlarmeB.IsRunning = true;
+                            }
+                        }
+                        else if (HorlogeManager.Horloge.ConfigurationAlarmeB.Periode == AlarmPeriodes.Weekend)
+                        {
+                            if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+                            {
+                                HorlogeManager.Horloge.ConfigurationAlarmeB.IsRunning = true;
+                            }
+                        }
+                        else
+                        {
+                            HorlogeManager.Horloge.ConfigurationAlarmeB.IsRunning = true;
+                        }
+                    } else
+                    {
+                        HorlogeManager.Horloge.ConfigurationAlarmeB.IsRunning = false;
+                    }
+                }
+            }
+
+            UpdateView();
         }
 
         // Son rôle est de faire apparaître et disparaître le : 
@@ -719,21 +818,16 @@ namespace M306_Bleu_Projet
         #region ALARM A ON/OFF [CONFIG ALARM A + ACTIVATION ALARM A]
         private void btn_AlarmOnOffA_Click(object sender, EventArgs e)
         {
-            // si status normal -> activer alarme A
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration)
             {
-                // TODO: Activer ALARM A
                 if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsConfigured)
                 {
                     if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive)
                     {
-                        lblAlarmBActive.Text = "OFF";
                         HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive = false;
                     } else
                     {
-                        lblAlarmBActive.Text = "ON";
                         HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive = true;
-
                     }
                 }
             }
@@ -804,12 +898,10 @@ namespace M306_Bleu_Projet
                 {
                     if (HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive)
                     {
-                        lblAlarmBActive.Text = "OFF";
                         HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive = false;
                     }
                     else
                     {
-                        lblAlarmBActive.Text = "ON";
                         HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive = true;
 
                     }
@@ -968,7 +1060,16 @@ namespace M306_Bleu_Projet
                 HorlogeManager.Horloge.AlarmConfigurationSoundNaturePreset = AlarmNatureSoundPresets.Vagues;
             }
 
+            HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive = false;
+            HorlogeManager.Horloge.ConfigurationAlarmeA.IsRunning = false;
+            HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive = false;
+            HorlogeManager.Horloge.ConfigurationAlarmeB.IsRunning = false;
+
             HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
+
+            // Si alarmes actives -> hide
+            hideAlarm(lblAlarmA);
+            hideAlarm(lblAlarmB);
 
             UpdateView();
         }

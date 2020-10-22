@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbHorlogeFront = new System.Windows.Forms.GroupBox();
+            this.lblAlarmA = new System.Windows.Forms.Label();
+            this.lblAlarmB = new System.Windows.Forms.Label();
             this.lblConfigurationValue = new System.Windows.Forms.Label();
             this.lblConfigurationField = new System.Windows.Forms.Label();
             this.lblConfigurationName = new System.Windows.Forms.Label();
@@ -78,8 +80,6 @@
             this.gbVolume = new System.Windows.Forms.GroupBox();
             this.btnVolumeDown = new System.Windows.Forms.Button();
             this.btnVolumeUp = new System.Windows.Forms.Button();
-            this.gbBand = new System.Windows.Forms.GroupBox();
-            this.btnRadio = new System.Windows.Forms.Button();
             this.btnSleep = new System.Windows.Forms.Button();
             this.gbAlarmReset = new System.Windows.Forms.GroupBox();
             this.btnAlertResetOff = new System.Windows.Forms.Button();
@@ -111,13 +111,14 @@
             this.gbTimeSetLeft.SuspendLayout();
             this.gbTimeSetRight.SuspendLayout();
             this.gbVolume.SuspendLayout();
-            this.gbBand.SuspendLayout();
             this.gbAlarmReset.SuspendLayout();
             this.gbNatureSoundEffects.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbHorlogeFront
             // 
+            this.gbHorlogeFront.Controls.Add(this.lblAlarmA);
+            this.gbHorlogeFront.Controls.Add(this.lblAlarmB);
             this.gbHorlogeFront.Controls.Add(this.lblConfigurationValue);
             this.gbHorlogeFront.Controls.Add(this.lblConfigurationField);
             this.gbHorlogeFront.Controls.Add(this.lblConfigurationName);
@@ -135,6 +136,28 @@
             this.gbHorlogeFront.Size = new System.Drawing.Size(776, 285);
             this.gbHorlogeFront.TabIndex = 0;
             this.gbHorlogeFront.TabStop = false;
+            // 
+            // lblAlarmA
+            // 
+            this.lblAlarmA.AutoSize = true;
+            this.lblAlarmA.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlarmA.Location = new System.Drawing.Point(125, 42);
+            this.lblAlarmA.Name = "lblAlarmA";
+            this.lblAlarmA.Size = new System.Drawing.Size(130, 26);
+            this.lblAlarmA.TabIndex = 2;
+            this.lblAlarmA.Text = "ALARM A!!";
+            this.lblAlarmA.Visible = false;
+            // 
+            // lblAlarmB
+            // 
+            this.lblAlarmB.AutoSize = true;
+            this.lblAlarmB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlarmB.Location = new System.Drawing.Point(523, 42);
+            this.lblAlarmB.Name = "lblAlarmB";
+            this.lblAlarmB.Size = new System.Drawing.Size(130, 26);
+            this.lblAlarmB.TabIndex = 2;
+            this.lblAlarmB.Text = "ALARM B!!";
+            this.lblAlarmB.Visible = false;
             // 
             // lblConfigurationValue
             // 
@@ -516,7 +539,6 @@
             this.gbHorlogeDessus.Controls.Add(this.gbTimeSetLeft);
             this.gbHorlogeDessus.Controls.Add(this.gbTimeSetRight);
             this.gbHorlogeDessus.Controls.Add(this.gbVolume);
-            this.gbHorlogeDessus.Controls.Add(this.gbBand);
             this.gbHorlogeDessus.Controls.Add(this.btnSleep);
             this.gbHorlogeDessus.Controls.Add(this.gbAlarmReset);
             this.gbHorlogeDessus.Controls.Add(this.gbNatureSoundEffects);
@@ -651,26 +673,6 @@
             this.btnVolumeUp.Text = "+";
             this.btnVolumeUp.UseVisualStyleBackColor = true;
             this.btnVolumeUp.Click += new System.EventHandler(this.btnVolumeUpClick);
-            // 
-            // gbBand
-            // 
-            this.gbBand.Controls.Add(this.btnRadio);
-            this.gbBand.Location = new System.Drawing.Point(487, 19);
-            this.gbBand.Name = "gbBand";
-            this.gbBand.Size = new System.Drawing.Size(108, 62);
-            this.gbBand.TabIndex = 1;
-            this.gbBand.TabStop = false;
-            this.gbBand.Text = "BAND";
-            // 
-            // btnRadio
-            // 
-            this.btnRadio.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio.Location = new System.Drawing.Point(29, 19);
-            this.btnRadio.Name = "btnRadio";
-            this.btnRadio.Size = new System.Drawing.Size(54, 36);
-            this.btnRadio.TabIndex = 0;
-            this.btnRadio.Text = "RADIO";
-            this.btnRadio.UseVisualStyleBackColor = true;
             // 
             // btnSleep
             // 
@@ -865,7 +867,6 @@
             this.gbTimeSetLeft.ResumeLayout(false);
             this.gbTimeSetRight.ResumeLayout(false);
             this.gbVolume.ResumeLayout(false);
-            this.gbBand.ResumeLayout(false);
             this.gbAlarmReset.ResumeLayout(false);
             this.gbNatureSoundEffects.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -890,8 +891,6 @@
         private System.Windows.Forms.Button btnSonPluie;
         private System.Windows.Forms.Button btnAlarmOnOffLeft;
         private System.Windows.Forms.Button btnAlarmOnOffRight;
-        private System.Windows.Forms.GroupBox gbBand;
-        private System.Windows.Forms.Button btnRadio;
         private System.Windows.Forms.Button btnSleep;
         private System.Windows.Forms.GroupBox gbAlarmReset;
         private System.Windows.Forms.Button btnAlertResetOff;
@@ -941,6 +940,8 @@
         private System.Windows.Forms.Label lblAlarmSonB;
         private System.Windows.Forms.Label lblAlarmPeriodeB;
         private System.Windows.Forms.Label lblAlarmNameB;
+        private System.Windows.Forms.Label lblAlarmA;
+        private System.Windows.Forms.Label lblAlarmB;
     }
 }
 
