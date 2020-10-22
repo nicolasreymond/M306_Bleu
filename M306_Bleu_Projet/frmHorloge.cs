@@ -27,8 +27,8 @@ namespace M306_Bleu_Projet
         public frmHorloge()
         {
             InitializeComponent();
-            configurationsTemporaires = new NameValueCollection();
-            this.HorlogeManager = new HorlogeManager();
+            HorlogeManager = new HorlogeManager();
+            UpdateView();
         }
 
         // METHODES
@@ -162,6 +162,22 @@ namespace M306_Bleu_Projet
         private void UpdateView()
         {
             // Machine d'état avec désactivation des éléments  selon l'état
+
+            if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsConfigured == false)
+            {
+                lblAlarmPeriodeA.Text = "-";
+                lblAlarmSonA.Text = "-";
+                lblAlarmVolumeA.Text = "-";
+                lblAlarmHeureA.Text = "-";
+            }
+
+            if (HorlogeManager.Horloge.ConfigurationAlarmeB.IsConfigured == false)
+            {
+                lblAlarmPeriodeB.Text = "-";
+                lblAlarmSonB.Text = "-";
+                lblAlarmVolumeB.Text = "-";
+                lblAlarmHeureB.Text = "-";
+            }
 
             switch (HorlogeManager.Horloge.Statut)
             {
@@ -512,7 +528,6 @@ namespace M306_Bleu_Projet
 
         #endregion
 
-        // EVENTS
         #region [EVENT] LOAD
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -708,6 +723,19 @@ namespace M306_Bleu_Projet
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration)
             {
                 // TODO: Activer ALARM A
+                if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsConfigured)
+                {
+                    if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive)
+                    {
+                        lblAlarmBActive.Text = "OFF";
+                        HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive = false;
+                    } else
+                    {
+                        lblAlarmBActive.Text = "ON";
+                        HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive = true;
+
+                    }
+                }
             }
             else if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration)
             {
@@ -744,6 +772,17 @@ namespace M306_Bleu_Projet
                         HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Inactive;
                         HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
 
+                        // SHOW new infos dans informations alarme
+                        Horaire AlarmeA = HorlogeManager.Horloge.ConfigurationAlarmeA;
+                        AlarmeA.IsConfigured = true;
+
+                        DateTime AlarmADateTime = new DateTime(AlarmeA.Annee, AlarmeA.Mois, AlarmeA.Jour, AlarmeA.Heure, AlarmeA.Minute, AlarmeA.Seconde);
+                        string DateTimeFormat = HorlogeManager.Horloge.Format == HorlogeFormat.Europe ? "HH:mm" : "hh:mm";
+
+                        lblAlarmPeriodeA.Text = AlarmeA.Periode.ToString();
+                        lblAlarmSonA.Text = AlarmeA.Type.ToString();
+                        lblAlarmVolumeA.Text = AlarmeA.Volume.ToString();
+                        lblAlarmHeureA.Text = HorlogeManager.GetCustomFormat(AlarmADateTime, DateTimeFormat);
                         break;
                     default:
                         break;
@@ -761,7 +800,20 @@ namespace M306_Bleu_Projet
             // si status normal -> activer alarme B
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration)
             {
-                // TODO: Activer ALARM B
+                if (HorlogeManager.Horloge.ConfigurationAlarmeB.IsConfigured)
+                {
+                    if (HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive)
+                    {
+                        lblAlarmBActive.Text = "OFF";
+                        HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive = false;
+                    }
+                    else
+                    {
+                        lblAlarmBActive.Text = "ON";
+                        HorlogeManager.Horloge.ConfigurationAlarmeB.IsActive = true;
+
+                    }
+                }
             }
             else if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
             {
@@ -797,6 +849,18 @@ namespace M306_Bleu_Projet
 
                         HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Inactive;
                         HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
+
+                        // SHOW new infos dans informations alarme
+                        Horaire Alarme = HorlogeManager.Horloge.ConfigurationAlarmeB;
+                        Alarme.IsConfigured = true;
+
+                        DateTime AlarmDateTime = new DateTime(Alarme.Annee, Alarme.Mois, Alarme.Jour, Alarme.Heure, Alarme.Minute, Alarme.Seconde);
+                        string DateTimeFormat = HorlogeManager.Horloge.Format == HorlogeFormat.Europe ? "HH:mm" : "hh:mm";
+
+                        lblAlarmPeriodeB.Text = Alarme.Periode.ToString();
+                        lblAlarmSonB.Text = Alarme.Type.ToString();
+                        lblAlarmVolumeB.Text = Alarme.Volume.ToString();
+                        lblAlarmHeureB.Text = HorlogeManager.GetCustomFormat(AlarmDateTime, DateTimeFormat);
 
                         break;
                     default:
@@ -885,7 +949,6 @@ namespace M306_Bleu_Projet
         #endregion
 
         #region ALARM RESET [RESET GLOBAL]
-        // ALARM ON/OFF CLICK
         private void btnAlarmOffClick(object sender, EventArgs e)
         {
             // config nature sound -> normal
@@ -915,14 +978,14 @@ namespace M306_Bleu_Projet
 
         #region [EVENTS] MOUSE UP & DOWN
 
-        #region ALARM B ON/OFF
-
+        #region BUTTONS ACTIVATE TIMER [MOUSEDOWN]
         private void btnMouseDownStartTimer(object sender, MouseEventArgs e)
         {
             startTimer();
         }
+        #endregion
 
-        // BTN ALARM ON/OFF A
+        #region ALARM A ON/OFF [MOUSEUP]
         private void btnAlarmAUp(object sender, MouseEventArgs e)
         {
             stopTimer();
@@ -938,8 +1001,9 @@ namespace M306_Bleu_Projet
             HandleConfigurationAffichage();
             UpdateView();
         }
+        #endregion
 
-        // BTN ALARM ON/OFF B
+        #region ALARM B ON/OFF [MOUSEUP]
         private void btnAlarmBUp(object sender, MouseEventArgs e)
         {
             stopTimer();
@@ -957,9 +1021,7 @@ namespace M306_Bleu_Projet
         }
         #endregion
 
-        #region DISPLAY CLOCK
-
-        // BTN DISPLAY/CLOCK MOUSEUP
+        #region DISPLAY CLOCK [MOUSEUP]
         private void btnDisplayClockUp(object sender, EventArgs e)
         {
             stopTimer();
@@ -977,16 +1039,8 @@ namespace M306_Bleu_Projet
                 UpdateView();
             }
         }
-
-
-
-
-
-
         #endregion
 
         #endregion
-
-        
     }
 }

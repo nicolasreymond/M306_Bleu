@@ -19,6 +19,8 @@ namespace M306_Bleu_Projet
         private AlarmNatureSoundPresets naturePreset;
         private string alarmSoundName;
         private int volume;
+        private bool isConfigured;
+        private bool isActive;
 
 
         public int Annee { get => annee; set => annee = value; }
@@ -107,6 +109,8 @@ namespace M306_Bleu_Projet
 
         internal AlarmRadioType RadioType { get => radioType; set => radioType = value; }
         internal AlarmNatureSoundPresets NaturePreset { get => naturePreset; set => naturePreset = value; }
+        public bool IsConfigured { get => isConfigured; set => isConfigured = value; }
+        public bool IsActive { get => isActive; set => isActive = value; }
 
         public Horaire()
         {
@@ -121,6 +125,8 @@ namespace M306_Bleu_Projet
             RadioType = AlarmRadioType.AM;
             NaturePreset = AlarmNatureSoundPresets.Vagues;
             Volume = 15;
+            IsConfigured = false;
+            IsActive = false;
         }
     }
 }
