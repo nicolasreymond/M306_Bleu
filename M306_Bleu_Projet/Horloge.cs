@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Projet  : Examen M306 Equipe Bleue
+ * Auteur  : Romario Sobreira & Nicolas Reymond
+ * Desc .  : Horloge "Dream Machine" par Sony (Modèle C#)
+ * Version : 1.0
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -75,32 +82,57 @@ namespace M306_Bleu_Projet
 
     public class Horloge 
     {
+        // CONSTANTES
+
+
+        // CHAMPS
         private int luminosite;
         private int volume;
-
-        private HorlogeFormat format;
-
-        private HorlogeEtat statut;
-        private HorlogeConfigurationEtapes etapeActive;
-
-        private AlarmConfigurationEtapes alarmConfigurationEtape;
-        private AlarmPeriodes alarmConfigurationPeriode;
-        private AlarmType alarmConfigurationSound;
-        private AlarmRadioType alarmConfigurationSoundRadioType;
-        private AlarmNatureSoundPresets alarmConfigurationSoundNaturePreset;
 
         private DateTime heureHorloge;
         private DateTime nouvelleHeure;
 
+        private HorlogeFormat format;
+
+        // Etats de base
+        private HorlogeEtat statut;
+
+        // Sous-Etats de HorlogeEtat
+        private HorlogeConfigurationEtapes etapeActive;
+        private AlarmConfigurationEtapes alarmConfigurationEtape;
+        private AlarmPeriodes alarmConfigurationPeriode;
+        private AlarmType alarmConfigurationSound;
+
+        // Sous-Etats de AlarmType
+        private AlarmRadioType alarmConfigurationSoundRadioType;
+        private AlarmNatureSoundPresets alarmConfigurationSoundNaturePreset;
+
+
+        // Les horaires 
+        // Horaire réglage de l'horloge
+        // Horaire réglage de l'alarme A
+        // Horaire réglage de l'alarme B
         private Horaire configurationHorloge = new Horaire();
         private Horaire configurationAlarmeA = new Horaire();
         private Horaire configurationAlarmeB = new Horaire();
 
+        // PROPRIETES
+        public Horaire ConfigurationHorloge { get => configurationHorloge; set => configurationHorloge = value; }
+        public Horaire ConfigurationAlarmeA { get => configurationAlarmeA; set => configurationAlarmeA = value; }
+        public Horaire ConfigurationAlarmeB { get => configurationAlarmeB; set => configurationAlarmeB = value; }
+        public DateTime NouvelleHeure { get => nouvelleHeure; set => nouvelleHeure = value; }
+        public DateTime HeureHorloge { get => heureHorloge; set => heureHorloge = value; }
         internal HorlogeEtat Statut { get => statut; set => statut = value; }
         internal HorlogeFormat Format { get => format; set => format = value; }
         internal HorlogeConfigurationEtapes EtapeActive { get => etapeActive; set => etapeActive = value; }
-        public DateTime HeureHorloge { get => heureHorloge; set => heureHorloge = value; }
+        internal AlarmConfigurationEtapes AlarmConfigurationEtape { get => alarmConfigurationEtape; set => alarmConfigurationEtape = value; }
+        internal AlarmPeriodes AlarmConfigurationPeriode { get => alarmConfigurationPeriode; set => alarmConfigurationPeriode = value; }
+        internal AlarmType AlarmConfigurationSound { get => alarmConfigurationSound; set => alarmConfigurationSound = value; }
+        internal AlarmRadioType AlarmConfigurationSoundRadioType { get => alarmConfigurationSoundRadioType; set => alarmConfigurationSoundRadioType = value; }
+        internal AlarmNatureSoundPresets AlarmConfigurationSoundNaturePreset { get => alarmConfigurationSoundNaturePreset; set => alarmConfigurationSoundNaturePreset = value; }
 
+
+        // Luminosité allant de 1 - 3 
         public int Luminosite
         {
             get => luminosite;
@@ -113,11 +145,9 @@ namespace M306_Bleu_Projet
             }
         }
 
-        public Horaire ConfigurationHorloge { get => configurationHorloge; set => configurationHorloge = value; }
-        public Horaire ConfigurationAlarmeA { get => configurationAlarmeA; set => configurationAlarmeA = value; }
-        public Horaire ConfigurationAlarmeB { get => configurationAlarmeB; set => configurationAlarmeB = value; }
-        public DateTime NouvelleHeure { get => nouvelleHeure; set => nouvelleHeure = value; }
-        public int Volume { 
+        // Volume allant de 1 - 30
+        public int Volume
+        {
             get => volume;
             set
             {
@@ -127,25 +157,28 @@ namespace M306_Bleu_Projet
                     volume = 30;
                 else
                     volume = value;
-            } 
+            }
         }
 
-        internal AlarmConfigurationEtapes AlarmConfigurationEtape { get => alarmConfigurationEtape; set => alarmConfigurationEtape = value; }
-        internal AlarmPeriodes AlarmConfigurationPeriode { get => alarmConfigurationPeriode; set => alarmConfigurationPeriode = value; }
-        internal AlarmType AlarmConfigurationSound { get => alarmConfigurationSound; set => alarmConfigurationSound = value; }
-        internal AlarmRadioType AlarmConfigurationSoundRadioType { get => alarmConfigurationSoundRadioType; set => alarmConfigurationSoundRadioType = value; }
-        internal AlarmNatureSoundPresets AlarmConfigurationSoundNaturePreset { get => alarmConfigurationSoundNaturePreset; set => alarmConfigurationSoundNaturePreset = value; }
-
+        // CONSTRUCTOR
         public Horloge()
         {
-            Statut = HorlogeEtat.NaturalConfiguration;    // Configuration de base
-            Format = HorlogeFormat.Europe;                 // Format d'horloge de base
-            Luminosite = 1;                                // Luminosité de base
+            Statut = HorlogeEtat.NaturalConfiguration;
+            Format = HorlogeFormat.Europe;     
+            Luminosite = 1;
             Volume = 15;
             HeureHorloge = DateTime.Now;
             NouvelleHeure = DateTime.Now;
         }
 
+        // METHODES
+
+        /*
+         * Nom                      : GetHeure
+         * Description              : Retourne l'heure actuelle en prenant en compte les éventuels décalages (si horloge reconfiguré)
+         * Paramètre (s) d’ entrée  : -
+         * Paramètre (s) de sortie  : DateTime L'heure actuelle
+         * */
         public DateTime GetHeure()
         {
             if (NouvelleHeure != HeureHorloge)
@@ -165,39 +198,6 @@ namespace M306_Bleu_Projet
             }
 
             return DateTime.Now;
-        }
-
-        public string GetAnnee(Horaire horaire)
-        {
-            return horaire.Annee.ToString();
-        }
-
-        public string GetMois(Horaire horaire)
-        {
-            return horaire.Mois.ToString();
-        }
-
-        public string GetJour(Horaire horaire)
-        {
-            return horaire.Jour.ToString();
-        }
-
-        public string GetHeure(Horaire horaire)
-        {
-            if ( Format == HorlogeFormat.America)
-            {
-                if ( horaire.Heure > 12)
-                {
-                    return (horaire.Heure - 12).ToString();
-                }
-            }
-
-            return horaire.Heure.ToString();
-        }
-
-        public string GetMinute(Horaire horaire)
-        {
-            return horaire.Minute.ToString();
         }
     }
 }
