@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Projet  : Examen M306 Equipe Bleue
+ * Auteur  : Romario Sobreira & Nicolas Reymond
+ * Desc .  : Horloge "Dream Machine" par Sony (Modèle C#)
+ * Version : 1.0
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -8,13 +15,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-/*
- * Projet  : Examen M306 Equipe Bleue
- * Auteur  : Romario Sobreira & Nicolas Reymond
- * Desc .  : Horloge "Dream Machine" par Sony (Modèle C#)
- * Version : 1.0
- */
 
 namespace M306_Bleu_Projet
 {
@@ -1139,13 +1139,13 @@ namespace M306_Bleu_Projet
         private void BtnTimeSetAdd_Click(object sender, EventArgs e)
         {
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.HorlogeConfiguration)
-                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationHorloge, true);
+                HorlogeManager.ConfigureParametresHoraire(HorlogeManager.Horloge.ConfigurationHorloge, true);
 
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
-                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationAlarmeB, true);
+                HorlogeManager.ConfigureParametresHoraire(HorlogeManager.Horloge.ConfigurationAlarmeB, true);
 
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration)
-                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationAlarmeA, true);
+                HorlogeManager.ConfigureParametresHoraire(HorlogeManager.Horloge.ConfigurationAlarmeA, true);
 
             HandleConfigurationAffichage();
             UpdateView();
@@ -1162,13 +1162,13 @@ namespace M306_Bleu_Projet
             //HorlogeManager.ConfigureHoraire(false);
 
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.HorlogeConfiguration)
-                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationHorloge, false);
+                HorlogeManager.ConfigureParametresHoraire(HorlogeManager.Horloge.ConfigurationHorloge, false);
 
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
-                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationAlarmeB, false);
+                HorlogeManager.ConfigureParametresHoraire(HorlogeManager.Horloge.ConfigurationAlarmeB, false);
 
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration)
-                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationAlarmeA, false);
+                HorlogeManager.ConfigureParametresHoraire(HorlogeManager.Horloge.ConfigurationAlarmeA, false);
 
             HandleConfigurationAffichage();
             UpdateView();

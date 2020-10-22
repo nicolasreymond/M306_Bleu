@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Projet  : Examen M306 Equipe Bleue
+ * Auteur  : Romario Sobreira & Nicolas Reymond
+ * Desc .  : Horloge "Dream Machine" par Sony (Modèle C#)
+ * Version : 1.0
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,16 +16,28 @@ namespace M306_Bleu_Projet
     
     public class HorlogeManager
     {
+        // CONSTANTES
 
+        // CHAMPS
         private Horloge horloge;
 
+        // PROPRIETES
         public Horloge Horloge { get => horloge; set => horloge = value; }
 
+        // CONSTRUCTOR
         public HorlogeManager()
         {
             this.Horloge = new Horloge();
         }
 
+
+        // METHODES
+        /*
+         * Nom                      : GetHeureFormatee
+         * Description              : Selon format -> retourne l'heure formatée correctement
+         * Paramètre (s) d’ entrée  : DateTime L'heure qu'on aimerait formater
+         * Paramètre (s) de sortie  : string
+         * */
         public string GetHeureFormatee(DateTime heure)
         {
             if (Horloge.Format == HorlogeFormat.Europe)
@@ -27,11 +46,24 @@ namespace M306_Bleu_Projet
             return heure.ToString("hh mm");
         }
 
+        /*
+         * Nom                      : GetCustomFormat
+         * Description              : Retourne l'heure en paramètre au format au paramètre
+         * Paramètre (s) d’ entrée  : DateTime L'heure qu'on aimerait formater
+         *                            string Le format souhaité  
+         * Paramètre (s) de sortie  : string
+         * */
         public string GetCustomFormat(DateTime heure, string format)
         {
             return heure.ToString(format);
         }
 
+        /*
+         * Nom                      : ChangeLuminosite
+         * Description              : Incrémente + retourne la valeur Luminosité de l'alarme
+         * Paramètre (s) d’ entrée  : -
+         * Paramètre (s) de sortie  : int
+         * */
         public int ChangeLuminosite()
         {
             Horloge.Luminosite += 1;
@@ -39,6 +71,12 @@ namespace M306_Bleu_Projet
             return Horloge.Luminosite;
         }
 
+        /*
+         * Nom                      : AddVolume
+         * Description              : Incrémente + retourne la valeur du volume de l'alarme
+         * Paramètre (s) d’ entrée  : -
+         * Paramètre (s) de sortie  : int
+         * */
         public int AddVolume()
         {
             Horloge.Volume += 1;
@@ -46,6 +84,12 @@ namespace M306_Bleu_Projet
             return Horloge.Volume;
         }
 
+        /*
+         * Nom                      : RemoveVolume
+         * Description              : Décrémente + retourne la valeur du volume de l'alarme
+         * Paramètre (s) d’ entrée  : -
+         * Paramètre (s) de sortie  : int
+         * */
         public int RemoveVolume()
         {
             Horloge.Volume -= 1;
@@ -53,7 +97,14 @@ namespace M306_Bleu_Projet
             return Horloge.Volume;
         }
 
-        public void ConfigureNouvelHoraire(Horaire Horaire, bool Addition)
+        /*
+         * Nom                      : ConfigureParametresHoraire
+         * Description              : Selon état, configure en "incrémentant" ou en "décrémentant" les fields des Horaire mis en paramètre
+         * Paramètre (s) d’ entrée  : Horaire Horaire qui va être modifiée
+         *                            bool Booléan pour nous dire si on "incrémente" ou "décrémente"
+         * Paramètre (s) de sortie  : void
+         * */
+        public void ConfigureParametresHoraire(Horaire Horaire, bool Addition)
         {
 
             if (Horloge.Statut == HorlogeEtat.HorlogeConfiguration) // Horloge de base config
@@ -82,7 +133,7 @@ namespace M306_Bleu_Projet
                 }
             }
 
-            if (Horloge.Statut == HorlogeEtat.AlarmAConfiguration || Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
+            if (Horloge.Statut == HorlogeEtat.AlarmAConfiguration || Horloge.Statut == HorlogeEtat.AlarmBConfiguration) // Si config des alarmes
             {
                 switch (Horloge.AlarmConfigurationEtape)
                 {
