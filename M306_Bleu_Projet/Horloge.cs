@@ -6,13 +6,15 @@ using System.Threading;
 
 namespace M306_Bleu_Projet
 {
-    enum HorlogeState
+    enum HorlogeEtat
     {
-        NaturalConfiguration, // statut par défaut
-        NatureSoundConfiguration, // nature sound statut
-        AlarmConfiguration,
+        NaturalConfiguration,
+        NatureSoundConfiguration,
+        HorlogeConfiguration,
         AlarmAConfiguration,
-        AlarmBConfiguration
+        AlarmBConfiguration,
+        AffichageAnnee,
+        AffichageDate,
     }
 
     enum HorlogeFormat
@@ -21,7 +23,7 @@ namespace M306_Bleu_Projet
         America
     }
 
-    enum AlarmConfigurationEtapes
+    enum HorlogeConfigurationEtapes
     {
         Inactive,
         Annee,
@@ -31,6 +33,46 @@ namespace M306_Bleu_Projet
         Minute
     }
 
+    enum AlarmConfigurationEtapes
+    {
+        Inactive,
+        Heure,
+        Minute,
+        Periode, //
+        Son, //
+        SonConfiguration,
+        Volume
+    }
+
+    enum AlarmPeriodes
+    {
+        Weekday,
+        Weekend,
+        Both
+    }
+
+    enum AlarmType
+    {
+        NatureSound,
+        Radio,
+        Buzzer
+    }
+
+    enum AlarmRadioType
+    {
+        AM,
+        FM
+    }
+
+    enum AlarmNatureSoundPresets
+    {
+        Vagues,
+        Oiseaux,
+        Pluie,
+        Ruisseau,
+        Plongee
+    }
+
     public class Horloge 
     {
         private int luminosite;
@@ -38,8 +80,14 @@ namespace M306_Bleu_Projet
 
         private HorlogeFormat format;
 
-        private HorlogeState statut;
-        private AlarmConfigurationEtapes etapeActive;
+        private HorlogeEtat statut;
+        private HorlogeConfigurationEtapes etapeActive;
+
+        private AlarmConfigurationEtapes alarmConfigurationEtape;
+        private AlarmPeriodes alarmConfigurationPeriode;
+        private AlarmType alarmConfigurationSound;
+        private AlarmRadioType alarmConfigurationSoundRadioType;
+        private AlarmNatureSoundPresets alarmConfigurationSoundNaturePreset;
 
         private DateTime heureHorloge;
         private DateTime nouvelleHeure;
@@ -48,9 +96,9 @@ namespace M306_Bleu_Projet
         private Horaire configurationAlarmeA = new Horaire();
         private Horaire configurationAlarmeB = new Horaire();
 
-        internal HorlogeState Statut { get => statut; set => statut = value; }
+        internal HorlogeEtat Statut { get => statut; set => statut = value; }
         internal HorlogeFormat Format { get => format; set => format = value; }
-        internal AlarmConfigurationEtapes EtapeActive { get => etapeActive; set => etapeActive = value; }
+        internal HorlogeConfigurationEtapes EtapeActive { get => etapeActive; set => etapeActive = value; }
         public DateTime HeureHorloge { get => heureHorloge; set => heureHorloge = value; }
 
         public int Luminosite
@@ -79,12 +127,18 @@ namespace M306_Bleu_Projet
                     volume = 30;
                 else
                     volume = value;
-            }
+            } 
         }
+
+        internal AlarmConfigurationEtapes AlarmConfigurationEtape { get => alarmConfigurationEtape; set => alarmConfigurationEtape = value; }
+        internal AlarmPeriodes AlarmConfigurationPeriode { get => alarmConfigurationPeriode; set => alarmConfigurationPeriode = value; }
+        internal AlarmType AlarmConfigurationSound { get => alarmConfigurationSound; set => alarmConfigurationSound = value; }
+        internal AlarmRadioType AlarmConfigurationSoundRadioType { get => alarmConfigurationSoundRadioType; set => alarmConfigurationSoundRadioType = value; }
+        internal AlarmNatureSoundPresets AlarmConfigurationSoundNaturePreset { get => alarmConfigurationSoundNaturePreset; set => alarmConfigurationSoundNaturePreset = value; }
 
         public Horloge()
         {
-            Statut = HorlogeState.NaturalConfiguration;    // Configuration de base
+            Statut = HorlogeEtat.NaturalConfiguration;    // Configuration de base
             Format = HorlogeFormat.Europe;                 // Format d'horloge de base
             Luminosite = 1;                                // Luminosité de base
             Volume = 15;

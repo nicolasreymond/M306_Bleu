@@ -12,12 +12,12 @@ namespace M306_Bleu_Projet
 
         private Horloge horloge;
 
+        public Horloge Horloge { get => horloge; set => horloge = value; }
+
         public HorlogeManager()
         {
             this.Horloge = new Horloge();
         }
-
-        public Horloge Horloge { get => horloge; set => horloge = value; }
 
         public string GetHeureFormatee(DateTime heure)
         {
@@ -25,6 +25,11 @@ namespace M306_Bleu_Projet
                 return heure.ToString("HH mm");
 
             return heure.ToString("hh mm");
+        }
+
+        public string GetCustomFormat(DateTime heure, string format)
+        {
+            return heure.ToString(format);
         }
 
         public int ChangeLuminosite()
@@ -48,87 +53,135 @@ namespace M306_Bleu_Projet
             return Horloge.Volume;
         }
 
-
-        public void ConfigureHoraire(bool addition)
+        public void ConfigureNouvelHoraire(Horaire Horaire, bool Addition)
         {
-            if (Horloge.Statut == HorlogeState.AlarmConfiguration) // Horloge de base config
+
+            if (Horloge.Statut == HorlogeEtat.HorlogeConfiguration) // Horloge de base config
             {
                 switch (Horloge.EtapeActive)
                 {
-                    case AlarmConfigurationEtapes.Inactive:
+                    case HorlogeConfigurationEtapes.Inactive:
                         break;
-                    case AlarmConfigurationEtapes.Annee:
-                        Horloge.ConfigurationHorloge.Annee = addition ? Horloge.ConfigurationHorloge.Annee + 1 : Horloge.ConfigurationHorloge.Annee - 1;
+                    case HorlogeConfigurationEtapes.Annee:
+                        Horaire.Annee = Addition ? Horaire.Annee + 1 : Horaire.Annee - 1;
                         break;
-                    case AlarmConfigurationEtapes.Mois:
-                        Horloge.ConfigurationHorloge.Mois = addition ? Horloge.ConfigurationHorloge.Mois + 1 : Horloge.ConfigurationHorloge.Mois - 1;
+                    case HorlogeConfigurationEtapes.Mois:
+                        Horaire.Mois = Addition ? Horaire.Mois + 1 : Horaire.Mois - 1;
                         break;
-                    case AlarmConfigurationEtapes.Jour:
-                        Horloge.ConfigurationHorloge.Jour = addition ? Horloge.ConfigurationHorloge.Jour + 1 : Horloge.ConfigurationHorloge.Jour - 1;
+                    case HorlogeConfigurationEtapes.Jour:
+                        Horaire.Jour = Addition ? Horaire.Jour + 1 : Horaire.Jour - 1;
                         break;
-                    case AlarmConfigurationEtapes.Heure:
-                        Horloge.ConfigurationHorloge.Heure = addition ? Horloge.ConfigurationHorloge.Heure + 1 : Horloge.ConfigurationHorloge.Heure - 1;
+                    case HorlogeConfigurationEtapes.Heure:
+                        Horaire.Heure = Addition ? Horaire.Heure + 1 : Horaire.Heure - 1;
                         break;
-                    case AlarmConfigurationEtapes.Minute:
-                        Horloge.ConfigurationHorloge.Minute = addition ? Horloge.ConfigurationHorloge.Minute + 1 : Horloge.ConfigurationHorloge.Minute - 1;
+                    case HorlogeConfigurationEtapes.Minute:
+                        Horaire.Minute = Addition ? Horaire.Minute + 1 : Horaire.Minute - 1;
                         break;
                     default:
                         break;
                 }
             }
 
-            if (Horloge.Statut == HorlogeState.AlarmAConfiguration) // Alarm A config
+            if (Horloge.Statut == HorlogeEtat.AlarmAConfiguration || Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
             {
-                switch (Horloge.EtapeActive)
+                switch (Horloge.AlarmConfigurationEtape)
                 {
                     case AlarmConfigurationEtapes.Inactive:
                         break;
-                    case AlarmConfigurationEtapes.Annee:
-                        Horloge.ConfigurationAlarmeA.Annee = addition ? Horloge.ConfigurationAlarmeA.Annee + 1 : Horloge.ConfigurationAlarmeA.Annee - 1;
-                        break;
-                    case AlarmConfigurationEtapes.Mois:
-                        Horloge.ConfigurationAlarmeA.Mois = addition ? Horloge.ConfigurationAlarmeA.Mois + 1 : Horloge.ConfigurationAlarmeA.Mois - 1;
-                        break;
-                    case AlarmConfigurationEtapes.Jour:
-                        Horloge.ConfigurationAlarmeA.Jour = addition ? Horloge.ConfigurationAlarmeA.Jour + 1 : Horloge.ConfigurationAlarmeA.Jour - 1;
-                        break;
                     case AlarmConfigurationEtapes.Heure:
-                        Horloge.ConfigurationAlarmeA.Heure = addition ? Horloge.ConfigurationAlarmeA.Heure + 1 : Horloge.ConfigurationAlarmeA.Heure - 1;
+                        Horaire.Heure = Addition ? Horaire.Heure + 1 : Horaire.Heure - 1;
                         break;
                     case AlarmConfigurationEtapes.Minute:
-                        Horloge.ConfigurationAlarmeA.Minute = addition ? Horloge.ConfigurationAlarmeA.Minute + 1 : Horloge.ConfigurationAlarmeA.Minute - 1;
+                        Horaire.Minute = Addition ? Horaire.Minute + 1 : Horaire.Minute - 1;
+                        break;
+                    case AlarmConfigurationEtapes.Periode:
+                        // sous conditions
+                        switch (Horloge.AlarmConfigurationPeriode)
+                        {
+                            case AlarmPeriodes.Weekday:
+                                Horaire.Periode = Addition ? AlarmPeriodes.Weekend : AlarmPeriodes.Both;
+                                Horloge.AlarmConfigurationPeriode = Addition ? AlarmPeriodes.Weekend : AlarmPeriodes.Both;
+                                break;
+                            case AlarmPeriodes.Weekend:
+                                Horaire.Periode = Addition ? AlarmPeriodes.Both : AlarmPeriodes.Weekday;
+                                Horloge.AlarmConfigurationPeriode = Addition ? AlarmPeriodes.Both : AlarmPeriodes.Weekday;
+                                break;
+                            case AlarmPeriodes.Both:
+                                Horaire.Periode = Addition ? AlarmPeriodes.Weekday : AlarmPeriodes.Weekend;
+                                Horloge.AlarmConfigurationPeriode = Addition ? AlarmPeriodes.Weekday : AlarmPeriodes.Weekend;
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    case AlarmConfigurationEtapes.Son:
+                        // sous conditions
+                        switch (Horloge.AlarmConfigurationSound)
+                        {
+                            case AlarmType.NatureSound:
+                                Horaire.Type = Addition ? AlarmType.Radio : AlarmType.Buzzer;
+                                Horloge.AlarmConfigurationSound = Addition ? AlarmType.Radio : AlarmType.Buzzer;
+                                break;
+                            case AlarmType.Radio:
+                                Horaire.Type = Addition ? AlarmType.Buzzer : AlarmType.NatureSound;
+                                Horloge.AlarmConfigurationSound = Addition ? AlarmType.Buzzer : AlarmType.NatureSound;
+                                break;
+                            case AlarmType.Buzzer:
+                                Horaire.Type = Addition ? AlarmType.NatureSound : AlarmType.Radio;
+                                Horloge.AlarmConfigurationSound = Addition ? AlarmType.NatureSound : AlarmType.Radio;
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    case AlarmConfigurationEtapes.SonConfiguration:
+                        // sous conditions
+                        if (Horloge.AlarmConfigurationSound == AlarmType.Radio)
+                        {
+                            switch (Horaire.RadioType)
+                            {
+                                case AlarmRadioType.AM:
+                                    Horaire.RadioType = AlarmRadioType.FM;
+                                    break;
+                                case AlarmRadioType.FM:
+                                    Horaire.RadioType = AlarmRadioType.AM;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        else if (Horloge.AlarmConfigurationSound == AlarmType.NatureSound)
+                        {
+                            switch (Horaire.NaturePreset)
+                            {
+                                case AlarmNatureSoundPresets.Vagues:
+                                    Horaire.NaturePreset = Addition ? AlarmNatureSoundPresets.Oiseaux : AlarmNatureSoundPresets.Plongee;
+                                    break;
+                                case AlarmNatureSoundPresets.Oiseaux:
+                                    Horaire.NaturePreset = Addition ? AlarmNatureSoundPresets.Pluie : AlarmNatureSoundPresets.Vagues;
+                                    break;
+                                case AlarmNatureSoundPresets.Pluie:
+                                    Horaire.NaturePreset = Addition ? AlarmNatureSoundPresets.Ruisseau : AlarmNatureSoundPresets.Oiseaux;
+                                    break;
+                                case AlarmNatureSoundPresets.Ruisseau:
+                                    Horaire.NaturePreset = Addition ? AlarmNatureSoundPresets.Plongee : AlarmNatureSoundPresets.Pluie;
+                                    break;
+                                case AlarmNatureSoundPresets.Plongee:
+                                    Horaire.NaturePreset = Addition ? AlarmNatureSoundPresets.Vagues : AlarmNatureSoundPresets.Ruisseau;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case AlarmConfigurationEtapes.Volume:
+                        // sous conditions
+                        Horaire.Volume = Addition ? Horaire.Volume += 1 : Horaire.Volume -= 1;
                         break;
                     default:
                         break;
                 }
             }
-
-            if (Horloge.Statut == HorlogeState.AlarmBConfiguration) // Alarm B config
-            {
-                switch (Horloge.EtapeActive)
-                {
-                    case AlarmConfigurationEtapes.Inactive:
-                        break;
-                    case AlarmConfigurationEtapes.Annee:
-                        Horloge.ConfigurationAlarmeB.Annee = addition ? Horloge.ConfigurationAlarmeB.Annee + 1 : Horloge.ConfigurationAlarmeB.Annee - 1;
-                        break;
-                    case AlarmConfigurationEtapes.Mois:
-                        Horloge.ConfigurationAlarmeB.Mois = addition ? Horloge.ConfigurationAlarmeB.Mois + 1 : Horloge.ConfigurationAlarmeB.Mois - 1;
-                        break;
-                    case AlarmConfigurationEtapes.Jour:
-                        Horloge.ConfigurationAlarmeB.Jour = addition ? Horloge.ConfigurationAlarmeB.Jour + 1 : Horloge.ConfigurationAlarmeB.Jour - 1;
-                        break;
-                    case AlarmConfigurationEtapes.Heure:
-                        Horloge.ConfigurationAlarmeB.Heure = addition ? Horloge.ConfigurationAlarmeB.Heure + 1 : Horloge.ConfigurationAlarmeB.Heure - 1;
-                        break;
-                    case AlarmConfigurationEtapes.Minute:
-                        Horloge.ConfigurationAlarmeB.Minute = addition ? Horloge.ConfigurationAlarmeB.Minute + 1 : Horloge.ConfigurationAlarmeB.Minute - 1;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
         }
     }
 }
