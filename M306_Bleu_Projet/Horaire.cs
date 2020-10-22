@@ -7,25 +7,56 @@ namespace M306_Bleu_Projet
 {
     public class Horaire
     {
+        // CONSTANTES
+
+        // CHAMPS
         private int annee;
         private int mois;
         private int jour;
         private int heure;
         private int minute;
         private int seconde;
+        private int volume;
+
         private AlarmPeriodes periode;
         private AlarmType type;
         private AlarmRadioType radioType;
         private AlarmNatureSoundPresets naturePreset;
-        private string alarmSoundName;
-        private int volume;
+
         private bool isConfigured;
         private bool isActive;
         private bool sleep;
         private bool isRunning;
 
-
+        // PROPRIETES
         public int Annee { get => annee; set => annee = value; }
+        internal AlarmPeriodes Periode { get => periode; set => periode = value; }
+        internal AlarmType Type { get => type; set => type = value; }
+        internal AlarmRadioType RadioType { get => radioType; set => radioType = value; }
+        internal AlarmNatureSoundPresets NaturePreset { get => naturePreset; set => naturePreset = value; }
+        public bool IsConfigured { get => isConfigured; set => isConfigured = value; }
+        public bool IsActive { get => isActive; set => isActive = value; }
+        public bool Sleep { get => sleep; set => sleep = value; }
+        public bool IsRunning { get => isRunning; set => isRunning = value; }
+
+        // Mois ne peut pas être en dessous de 1
+        // Ni en dessus de 30
+        public int Volume
+        {
+            get => volume;
+            set
+            {
+                if (value > 30)
+                    volume = 1;
+                else if (value < 1)
+                    volume = 30;
+                else
+                    volume = value;
+            }
+        }
+
+        // Mois ne peut pas être en dessous de 1
+        // Ni en dessus de 12
         public int Mois
         {
             get => mois;
@@ -39,6 +70,9 @@ namespace M306_Bleu_Projet
                     mois = value;
             }
         }
+
+        // Jour ne peut pas être en dessous de 1
+        // Ni en dessus de 31
         public int Jour
         {
             get => jour;
@@ -52,6 +86,9 @@ namespace M306_Bleu_Projet
                     jour = value;
             }
         }
+
+        // Heure ne peut pas être en dessous de 0
+        // Ni en dessus de 23
         public int Heure
         {
             get => heure;
@@ -65,6 +102,9 @@ namespace M306_Bleu_Projet
                     heure = value;
             }
         }
+
+        // Minute ne peut pas être en dessous de 0
+        // Ni en dessus de 59
         public int Minute
         {
             get => minute;
@@ -79,6 +119,8 @@ namespace M306_Bleu_Projet
             }
         }
 
+        // Seconde ne peut pas être en dessous de 0
+        // Ni en dessus de 59
         public int Seconde
         {
             get => seconde;
@@ -93,29 +135,9 @@ namespace M306_Bleu_Projet
             }
         }
 
-        internal AlarmPeriodes Periode { get => periode; set => periode = value; }
-        internal AlarmType Type { get => type; set => type = value; }
-        public string AlarmSoundName { get => alarmSoundName; set => alarmSoundName = value; }
-        public int Volume { 
-            get => volume; 
-            set
-            {
-                if (value > 30)
-                    volume = 1;
-                else if (value < 1)
-                    volume = 30;
-                else
-                    volume = value;
-            }
-        }
 
-        internal AlarmRadioType RadioType { get => radioType; set => radioType = value; }
-        internal AlarmNatureSoundPresets NaturePreset { get => naturePreset; set => naturePreset = value; }
-        public bool IsConfigured { get => isConfigured; set => isConfigured = value; }
-        public bool IsActive { get => isActive; set => isActive = value; }
-        public bool Sleep { get => sleep; set => sleep = value; }
-        public bool IsRunning { get => isRunning; set => isRunning = value; }
 
+        // CONSTRUCTOR
         public Horaire()
         {
             Annee = DateTime.Now.Year;
@@ -135,6 +157,14 @@ namespace M306_Bleu_Projet
             Sleep = false;
         }
 
+        // METHODES
+
+        /*
+         * Nom                      : GetHeureConfiguree
+         * Description              : Retourne l'heure actuelle de cette classe Horaire
+         * Paramètre (s) d’ entrée  : - 
+         * Paramètre (s) de sortie  : DateTime
+         * */
         public DateTime GetHeureConfiguree()
         {
             return new DateTime(Annee, Mois, Jour, Heure, Minute, Seconde);

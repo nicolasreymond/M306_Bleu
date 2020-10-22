@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Projet  : Examen M306 Equipe Bleue
+ * Auteur  : Romario Sobreira & Nicolas Reymond
+ * Desc .  : Horloge "Dream Machine" par Sony (Modèle C#)
+ * Version : 1.0
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -75,6 +82,10 @@ namespace M306_Bleu_Projet
 
     public class Horloge 
     {
+        // CONSTANTES
+
+
+        // CHAMPS
         private int luminosite;
         private int volume;
 
@@ -105,7 +116,7 @@ namespace M306_Bleu_Projet
         private Horaire configurationAlarmeA = new Horaire();
         private Horaire configurationAlarmeB = new Horaire();
 
-
+        // PROPRIETES
         public Horaire ConfigurationHorloge { get => configurationHorloge; set => configurationHorloge = value; }
         public Horaire ConfigurationAlarmeA { get => configurationAlarmeA; set => configurationAlarmeA = value; }
         public Horaire ConfigurationAlarmeB { get => configurationAlarmeB; set => configurationAlarmeB = value; }
@@ -149,19 +160,25 @@ namespace M306_Bleu_Projet
             }
         }
 
+        // CONSTRUCTOR
         public Horloge()
         {
-            Statut = HorlogeEtat.NaturalConfiguration;    // Configuration de base
-            Format = HorlogeFormat.Europe;                 // Format d'horloge de base
-            Luminosite = 1;                                // Luminosité de base
+            Statut = HorlogeEtat.NaturalConfiguration;
+            Format = HorlogeFormat.Europe;     
+            Luminosite = 1;
             Volume = 15;
             HeureHorloge = DateTime.Now;
             NouvelleHeure = DateTime.Now;
         }
 
-        // Retourne l'heure actuelle
-        // Cette fonction prend en compte l'heure de décalage
-        // Si l'horloge a été configuré avec une nouvelle heure 
+        // METHODES
+
+        /*
+         * Nom                      : GetHeure
+         * Description              : Retourne l'heure actuelle en prenant en compte les éventuels décalages (si horloge reconfiguré)
+         * Paramètre (s) d’ entrée  : -
+         * Paramètre (s) de sortie  : DateTime L'heure actuelle
+         * */
         public DateTime GetHeure()
         {
             if (NouvelleHeure != HeureHorloge)
