@@ -88,8 +88,6 @@ namespace M306_Bleu_Projet
             {
                 switch (HorlogeManager.Horloge.EtapeActive) // on check les étapes pour afficher la bonne configuration
                 {
-                    case HorlogeConfigurationEtapes.Inactive:
-                        break;
                     case HorlogeConfigurationEtapes.Annee:
                         ChangeConfigurationAffichage("Configuration de l'alarme", "Année", HorlogeManager.Horloge.ConfigurationHorloge.Annee.ToString());
                         break;
@@ -115,8 +113,6 @@ namespace M306_Bleu_Projet
                 string configurationTitre = "Configuration de l'alarme A";
                 switch (HorlogeManager.Horloge.AlarmConfigurationEtape)// on check les étapes pour afficher la bonne configuration
                 {
-                    case AlarmConfigurationEtapes.Inactive:
-                        break;
                     case AlarmConfigurationEtapes.Heure:
                         ChangeConfigurationAffichage(configurationTitre, "Heure", HorlogeManager.Horloge.ConfigurationAlarmeA.Heure.ToString());
                         break;
@@ -151,8 +147,6 @@ namespace M306_Bleu_Projet
                 string configurationTitre = "Configuration de l'alarme B";
                 switch (HorlogeManager.Horloge.AlarmConfigurationEtape) // on check les étapes pour afficher la bonne configuration
                 {
-                    case AlarmConfigurationEtapes.Inactive:
-                        break;
                     case AlarmConfigurationEtapes.Heure:
                         ChangeConfigurationAffichage(configurationTitre, "Heure", HorlogeManager.Horloge.ConfigurationAlarmeB.Heure.ToString());
                         break;
@@ -642,9 +636,6 @@ namespace M306_Bleu_Projet
         {
             lblTime.Text = HorlogeManager.GetHeureFormatee(HorlogeManager.Horloge.GetHeure());
 
-            Console.WriteLine(HorlogeManager.Horloge.ConfigurationAlarmeA.Periode.ToString());
-            //Console.WriteLine(HorlogeManager.Horloge.ConfigurationAlarme.Periode.ToString());
-
             if (HorlogeManager.Horloge.ConfigurationAlarmeA.IsActive)
             {
                 if (HorlogeManager.Horloge.ConfigurationAlarmeA.Sleep == false)
@@ -752,7 +743,7 @@ namespace M306_Bleu_Projet
 
         /*
          * Nom                      : TimerButtons_Tick
-         * Description              : Change la visibilité du groupe "date", et remet la configuration de base de l'horloge
+         * Description              : Change la visibilité du groupe "date", et remet l'état de base de l'horloge
          * Paramètre (s) d’ entrée  : -
          * Paramètre (s) de sortie  : void
          * */
@@ -936,7 +927,7 @@ namespace M306_Bleu_Projet
                         /*************** STATUT NATURAL CONFIGURATION *******************/
                         HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
                         /*************** ETAPE ALARM CONFIGURATION INACTIVE *******************/
-                        HorlogeManager.Horloge.EtapeActive = HorlogeConfigurationEtapes.Inactive;
+                        HorlogeManager.Horloge.EtapeActive = HorlogeConfigurationEtapes.Heure;
 
                         break;
                     default:
@@ -976,8 +967,6 @@ namespace M306_Bleu_Projet
             {
                 switch (HorlogeManager.Horloge.AlarmConfigurationEtape)
                 {
-                    case AlarmConfigurationEtapes.Inactive:
-                        break;
                     case AlarmConfigurationEtapes.Heure:
                         HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Minute;
                         break;
@@ -1004,7 +993,7 @@ namespace M306_Bleu_Projet
                         break;
                     case AlarmConfigurationEtapes.Volume:
 
-                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Inactive;
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Heure;
                         HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
 
                         // SHOW new infos dans informations alarme
@@ -1059,8 +1048,6 @@ namespace M306_Bleu_Projet
             {
                 switch (HorlogeManager.Horloge.AlarmConfigurationEtape)
                 {
-                    case AlarmConfigurationEtapes.Inactive:
-                        break;
                     case AlarmConfigurationEtapes.Heure:
                         HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Minute;
                         break;
@@ -1087,7 +1074,7 @@ namespace M306_Bleu_Projet
                         break;
                     case AlarmConfigurationEtapes.Volume:
 
-                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Inactive;
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Heure;
                         HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
 
                         // SHOW new infos dans informations alarme
@@ -1226,7 +1213,7 @@ namespace M306_Bleu_Projet
             if ( HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration || HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
             {
                 // RESET DES SOUS ETAPES
-                HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Inactive;
+                HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Heure;
                 HorlogeManager.Horloge.AlarmConfigurationPeriode = AlarmPeriodes.Weekday;
                 HorlogeManager.Horloge.AlarmConfigurationSound = AlarmType.NatureSound;
                 HorlogeManager.Horloge.AlarmConfigurationSoundRadioType = AlarmRadioType.AM;

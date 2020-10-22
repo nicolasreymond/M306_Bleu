@@ -42,11 +42,10 @@ namespace M306_Bleu_Projet
 
     enum AlarmConfigurationEtapes
     {
-        Inactive,
         Heure,
         Minute,
-        Periode, //
-        Son, //
+        Periode, 
+        Son,
         SonConfiguration,
         Volume
     }

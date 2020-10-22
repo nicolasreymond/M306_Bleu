@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Projet  : Examen M306 Equipe Bleue
+ * Auteur  : Romario Sobreira & Nicolas Reymond
+ * Desc .  : Horloge "Dream Machine" par Sony (Modèle C#)
+ * Version : 1.0
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
