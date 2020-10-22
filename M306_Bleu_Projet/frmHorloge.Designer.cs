@@ -814,22 +814,22 @@
             // timerGlobal
             // 
             this.timerGlobal.Interval = 1000;
-            this.timerGlobal.Tick += new System.EventHandler(this.timerGlobal_Tick);
+            this.timerGlobal.Tick += new System.EventHandler(this.TimerGlobal_Tick);
             // 
             // timerButtons
             // 
             this.timerButtons.Interval = 1000;
-            this.timerButtons.Tick += new System.EventHandler(this.timerButtonsTick);
+            this.timerButtons.Tick += new System.EventHandler(this.TimerButtons_Tick);
             // 
             // timerAnimation
             // 
             this.timerAnimation.Interval = 1000;
-            this.timerAnimation.Tick += new System.EventHandler(this.timerAnimationTick);
+            this.timerAnimation.Tick += new System.EventHandler(this.TimerAnimation_Tick);
             // 
             // timerHideElement
             // 
             this.timerHideElement.Interval = 2000;
-            this.timerHideElement.Tick += new System.EventHandler(this.timerHideElement_Tick);
+            this.timerHideElement.Tick += new System.EventHandler(this.TimerHideElement_Tick);
             // 
             // frmHorloge
             // 
@@ -838,9 +838,11 @@
             this.ClientSize = new System.Drawing.Size(799, 545);
             this.Controls.Add(this.gbHorlogeDessus);
             this.Controls.Add(this.gbHorlogeFront);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmHorloge";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.frmHorloge_Load);
             this.gbHorlogeFront.ResumeLayout(false);
             this.gbHorlogeFront.PerformLayout();
             this.gbClock.ResumeLayout(false);
