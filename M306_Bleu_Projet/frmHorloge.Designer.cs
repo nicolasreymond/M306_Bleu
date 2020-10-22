@@ -462,7 +462,7 @@
             this.btnDisplayClock.Text = "DISPLAY/CLOCK";
             this.btnDisplayClock.UseVisualStyleBackColor = true;
             this.btnDisplayClock.Click += new System.EventHandler(this.btnDisplayClockClick);
-            this.btnDisplayClock.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnDisplayClockDown);
+            this.btnDisplayClock.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMouseDownStartTimer);
             this.btnDisplayClock.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnDisplayClockUp);
             // 
             // btnTimeZone
@@ -704,6 +704,9 @@
             this.btnAlarmOnOffLeft.TabIndex = 0;
             this.btnAlarmOnOffLeft.Text = "ALARM ON/OFF";
             this.btnAlarmOnOffLeft.UseVisualStyleBackColor = true;
+            this.btnAlarmOnOffLeft.Click += new System.EventHandler(this.btn_AlarmOnOffA_Click);
+            this.btnAlarmOnOffLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMouseDownStartTimer);
+            this.btnAlarmOnOffLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnAlarmAUp);
             // 
             // btnAlarmOnOffRight
             // 
@@ -714,7 +717,8 @@
             this.btnAlarmOnOffRight.TabIndex = 0;
             this.btnAlarmOnOffRight.Text = "ALARM ON/OFF";
             this.btnAlarmOnOffRight.UseVisualStyleBackColor = true;
-            this.btnAlarmOnOffRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnAlarmBDown);
+            this.btnAlarmOnOffRight.Click += new System.EventHandler(this.btn_AlarmOnOffB_Click);
+            this.btnAlarmOnOffRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMouseDownStartTimer);
             this.btnAlarmOnOffRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnAlarmBUp);
             // 
             // btnSnooze

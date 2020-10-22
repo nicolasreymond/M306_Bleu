@@ -31,6 +31,7 @@ namespace M306_Bleu_Projet
             this.HorlogeManager = new HorlogeManager();
         }
 
+        // METHODES
         #region [METHODES] HELPERS
 
         private void startTimer()
@@ -50,26 +51,97 @@ namespace M306_Bleu_Projet
 
         private void HandleConfigurationAffichage()
         {
-            if (HorlogeManager.Horloge.Statut == HorlogeState.AlarmConfiguration)
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.HorlogeConfiguration)
             {
                 switch (HorlogeManager.Horloge.EtapeActive)
                 {
-                    case AlarmConfigurationEtapes.Inactive:
+                    case HorlogeConfigurationEtapes.Inactive:
                         break;
-                    case AlarmConfigurationEtapes.Annee:
+                    case HorlogeConfigurationEtapes.Annee:
                         ChangeConfigurationAffichage("Configuration de l'alarme", "Année", HorlogeManager.Horloge.ConfigurationHorloge.Annee.ToString());
                         break;
-                    case AlarmConfigurationEtapes.Mois:
+                    case HorlogeConfigurationEtapes.Mois:
                         ChangeConfigurationAffichage("Configuration de l'alarme", "Mois", HorlogeManager.Horloge.ConfigurationHorloge.Mois.ToString());
                         break;
-                    case AlarmConfigurationEtapes.Jour:
+                    case HorlogeConfigurationEtapes.Jour:
                         ChangeConfigurationAffichage("Configuration de l'alarme", "Jour", HorlogeManager.Horloge.ConfigurationHorloge.Jour.ToString());
                         break;
-                    case AlarmConfigurationEtapes.Heure:
+                    case HorlogeConfigurationEtapes.Heure:
                         ChangeConfigurationAffichage("Configuration de l'alarme", "Heure", HorlogeManager.Horloge.ConfigurationHorloge.Heure.ToString());
                         break;
-                    case AlarmConfigurationEtapes.Minute:
+                    case HorlogeConfigurationEtapes.Minute:
                         ChangeConfigurationAffichage("Configuration de l'alarme", "Minute", HorlogeManager.Horloge.ConfigurationHorloge.Minute.ToString());
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
+            {
+                string configurationTitre = "Configuration de l'alarme B";
+                switch (HorlogeManager.Horloge.AlarmConfigurationEtape)
+                {
+                    case AlarmConfigurationEtapes.Inactive:
+                        break;
+                    case AlarmConfigurationEtapes.Heure:
+                        ChangeConfigurationAffichage(configurationTitre, "Heure", HorlogeManager.Horloge.ConfigurationAlarmeB.Heure.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.Minute:
+                        ChangeConfigurationAffichage(configurationTitre, "Minute", HorlogeManager.Horloge.ConfigurationAlarmeB.Minute.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.Periode:
+                        ChangeConfigurationAffichage(configurationTitre, "Période", HorlogeManager.Horloge.ConfigurationAlarmeB.Periode.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.Son:
+                        ChangeConfigurationAffichage(configurationTitre, "Alarme", HorlogeManager.Horloge.ConfigurationAlarmeB.Type.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.SonConfiguration:
+                        
+                        if ( HorlogeManager.Horloge.AlarmConfigurationSound == AlarmType.Radio )
+                            ChangeConfigurationAffichage(configurationTitre, "Radio AM/FM ?", HorlogeManager.Horloge.ConfigurationAlarmeB.RadioType.ToString());
+
+                        if (HorlogeManager.Horloge.AlarmConfigurationSound == AlarmType.NatureSound)
+                            ChangeConfigurationAffichage(configurationTitre, "NatureSound", HorlogeManager.Horloge.ConfigurationAlarmeB.NaturePreset.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.Volume:
+                        ChangeConfigurationAffichage(configurationTitre, "Volume", HorlogeManager.Horloge.ConfigurationAlarmeB.Volume.ToString());
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration)
+            {
+                string configurationTitre = "Configuration de l'alarme A";
+                switch (HorlogeManager.Horloge.AlarmConfigurationEtape)
+                {
+                    case AlarmConfigurationEtapes.Inactive:
+                        break;
+                    case AlarmConfigurationEtapes.Heure:
+                        ChangeConfigurationAffichage(configurationTitre, "Heure", HorlogeManager.Horloge.ConfigurationAlarmeA.Heure.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.Minute:
+                        ChangeConfigurationAffichage(configurationTitre, "Minute", HorlogeManager.Horloge.ConfigurationAlarmeA.Minute.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.Periode:
+                        // retourner la bonne valeur string
+                        ChangeConfigurationAffichage(configurationTitre, "Période", HorlogeManager.Horloge.ConfigurationAlarmeA.Periode.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.Son:
+                        ChangeConfigurationAffichage(configurationTitre, "Alarme", HorlogeManager.Horloge.ConfigurationAlarmeA.Type.ToString());
+                        break;
+                    case AlarmConfigurationEtapes.SonConfiguration:
+                        if (HorlogeManager.Horloge.AlarmConfigurationSound == AlarmType.Radio)
+                            ChangeConfigurationAffichage(configurationTitre, "Radio AM/FM ?", HorlogeManager.Horloge.ConfigurationAlarmeA.RadioType.ToString());
+
+                        if (HorlogeManager.Horloge.AlarmConfigurationSound == AlarmType.NatureSound)
+                            ChangeConfigurationAffichage(configurationTitre, "NatureSound", HorlogeManager.Horloge.ConfigurationAlarmeA.NaturePreset.ToString());
+
+                        break;
+                    case AlarmConfigurationEtapes.Volume:
+                        ChangeConfigurationAffichage(configurationTitre, "Volume", HorlogeManager.Horloge.ConfigurationAlarmeA.Volume.ToString());
                         break;
                     default:
                         break;
@@ -79,21 +151,9 @@ namespace M306_Bleu_Projet
 
         private void ChangeConfigurationAffichage(string ConfigurationName, string ConfigurationField, string ConfigurationValue)
         {
-            lblConfigurationName.Visible = true;
             lblConfigurationName.Text = ConfigurationName;
-
-            lblConfigurationField.Visible = true;
             lblConfigurationField.Text = ConfigurationField;
-
-            lblConfigurationValue.Visible = true;
             lblConfigurationValue.Text = ConfigurationValue;
-        }
-
-        private void HideConfigurationAffichage()
-        {
-            lblConfigurationName.Visible = false;
-            lblConfigurationField.Visible = false;
-            lblConfigurationValue.Visible = false;
         }
 
         #endregion
@@ -103,9 +163,13 @@ namespace M306_Bleu_Projet
         {
             // Machine d'état avec désactivation des éléments  selon l'état
 
-            switch (this.HorlogeManager.Horloge.Statut)
+            switch (HorlogeManager.Horloge.Statut)
             {
-                case HorlogeState.NaturalConfiguration:
+                case HorlogeEtat.NaturalConfiguration:
+
+                    lblConfigurationName.Visible = false;
+                    lblConfigurationField.Visible = false;
+                    lblConfigurationValue.Visible = false;
 
                     // Groupbox Année ( information )
                     gbAnnee.Visible = false;
@@ -150,7 +214,11 @@ namespace M306_Bleu_Projet
                     btnTimeZone.Enabled = true;
 
                     break;
-                case HorlogeState.NatureSoundConfiguration:
+                case HorlogeEtat.NatureSoundConfiguration:
+
+                    lblConfigurationName.Visible = false;
+                    lblConfigurationField.Visible = false;
+                    lblConfigurationValue.Visible = false;
 
                     // Groupbox Année ( information )
                     gbAnnee.Visible = false;
@@ -185,7 +253,11 @@ namespace M306_Bleu_Projet
 
 
                     break;
-                case HorlogeState.AlarmConfiguration:
+                case HorlogeEtat.HorlogeConfiguration:
+
+                    lblConfigurationName.Visible = true;
+                    lblConfigurationField.Visible = true;
+                    lblConfigurationValue.Visible = true;
 
                     // Groupbox Année ( information )
                     gbAnnee.Visible = false;
@@ -225,7 +297,11 @@ namespace M306_Bleu_Projet
                     // button date/time zone
                     btnTimeZone.Enabled = false;
                     break;
-                case HorlogeState.AffichageDate:
+                case HorlogeEtat.AffichageDate:
+
+                    lblConfigurationName.Visible = false;
+                    lblConfigurationField.Visible = false;
+                    lblConfigurationValue.Visible = false;
 
                     // Groupbox Année ( information )
                     gbAnnee.Visible = false;
@@ -270,7 +346,11 @@ namespace M306_Bleu_Projet
                     btnTimeZone.Enabled = true;
 
                     break;
-                case HorlogeState.AffichageAnnee:
+                case HorlogeEtat.AffichageAnnee:
+
+                    lblConfigurationName.Visible = false;
+                    lblConfigurationField.Visible = false;
+                    lblConfigurationValue.Visible = false;
 
                     // Groupbox Année ( information )
                     gbAnnee.Visible = true;
@@ -315,6 +395,116 @@ namespace M306_Bleu_Projet
                     btnTimeZone.Enabled = true;
 
                     break;
+                case HorlogeEtat.AlarmBConfiguration:
+
+                    lblConfigurationName.Visible = true;
+                    lblConfigurationField.Visible = true;
+                    lblConfigurationValue.Visible = true;
+
+                    // Groupbox Année ( information )
+                    gbAnnee.Visible = false;
+
+                    // Groupbox Date ( information )
+                    gbDate.Visible = false;
+
+                    // buttons Alarm ON/OFF
+                    btnAlarmOnOffLeft.Enabled = false;
+                    btnAlarmOnOffRight.Enabled = true;
+
+                    // buttons - & + ( TIME SET)
+                    btnTimeSetLeftDown.Enabled = false;
+                    btnTimeSetLeftUp.Enabled = false;
+                    btnTimeSetRightDown.Enabled = true;
+                    btnTimeSetRightUp.Enabled = true;
+
+                    // buttons volume
+                    btnVolumeUp.Enabled = false;
+                    btnVolumeDown.Enabled = false;
+
+                    if (HorlogeManager.Horloge.AlarmConfigurationEtape == AlarmConfigurationEtapes.Volume)
+                    {
+                        btnVolumeUp.Enabled = true;
+                        btnVolumeDown.Enabled = true;
+                    }
+
+                    // buttons nature sounds
+                    btnSonVagues.Enabled = false;
+                    btnSonRuisseau.Enabled = false;
+                    btnSonPluie.Enabled = false;
+                    btnSonPlongee.Enabled = false;
+                    btnSonOiseau.Enabled = false;
+
+                    // button Radio
+                    btnRadio.Enabled = false;
+
+                    // button Sleep
+                    btnSleep.Enabled = false;
+
+                    // button Snooze
+                    //btnSnooze.Enabled = false;
+
+                    // button Display/clock
+                    btnDisplayClock.Enabled = false;
+
+                    // button date/time zone
+                    btnTimeZone.Enabled = false;
+                    break;
+                case HorlogeEtat.AlarmAConfiguration:
+
+                    lblConfigurationName.Visible = true;
+                    lblConfigurationField.Visible = true;
+                    lblConfigurationValue.Visible = true;
+
+                    // Groupbox Année ( information )
+                    gbAnnee.Visible = false;
+
+                    // Groupbox Date ( information )
+                    gbDate.Visible = false;
+
+                    // buttons Alarm ON/OFF
+                    btnAlarmOnOffLeft.Enabled = true;
+                    btnAlarmOnOffRight.Enabled = false;
+
+                    // buttons - & + ( TIME SET)
+                    btnTimeSetLeftDown.Enabled = true;
+                    btnTimeSetLeftUp.Enabled = true;
+                    btnTimeSetRightDown.Enabled = false;
+                    btnTimeSetRightUp.Enabled = false;
+
+                    // buttons volume
+                    btnVolumeUp.Enabled = false;
+                    btnVolumeDown.Enabled = false;
+
+                    if (HorlogeManager.Horloge.AlarmConfigurationEtape == AlarmConfigurationEtapes.Volume)
+                    {
+                        btnVolumeUp.Enabled = true;
+                        btnVolumeDown.Enabled = true;
+                    }
+
+                    // buttons nature sounds
+                    btnSonVagues.Enabled = false;
+                    btnSonRuisseau.Enabled = false;
+                    btnSonPluie.Enabled = false;
+                    btnSonPlongee.Enabled = false;
+                    btnSonOiseau.Enabled = false;
+
+                    // button Radio
+                    btnRadio.Enabled = false;
+
+                    // button Sleep
+                    btnSleep.Enabled = false;
+
+                    // button Snooze
+                    //btnSnooze.Enabled = false;
+
+                    // button Display/clock
+                    btnDisplayClock.Enabled = false;
+
+                    // button date/time zone
+                    btnTimeZone.Enabled = false;
+
+
+                    break;
                 default:
                     break;
             }
@@ -322,6 +512,7 @@ namespace M306_Bleu_Projet
 
         #endregion
 
+        // EVENTS
         #region [EVENT] LOAD
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -365,19 +556,19 @@ namespace M306_Bleu_Projet
             timerHideElement.Stop();
             // remove element
             gbDate.Visible = false;
-            HorlogeManager.Horloge.Statut = HorlogeState.NaturalConfiguration;
+            HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
         }
 
         #endregion
 
         #region [EVENTS] CLICKS  
 
-        #region NATURE SOUND 
+        #region NATURE SOUND [CONFIGURATION NATURE SOUNDS]
         // VAGUE CLICK
         private void btnNatureSoundVagueClick(object sender, EventArgs e)
         {
             // gérer statut 
-            this.HorlogeManager.Horloge.Statut = HorlogeState.NatureSoundConfiguration;
+            this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
 
             // event relié
             lblNatureSound.Text = btnSonVagues.Text;
@@ -390,7 +581,7 @@ namespace M306_Bleu_Projet
         private void btnNatureSoundOiseauClick(object sender, EventArgs e)
         {
             // gérer statut 
-            this.HorlogeManager.Horloge.Statut = HorlogeState.NatureSoundConfiguration;
+            this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
 
             // event relié
             lblNatureSound.Text = btnSonOiseau.Text;
@@ -403,7 +594,7 @@ namespace M306_Bleu_Projet
         private void btnNatureSoundParapluieClick(object sender, EventArgs e)
         {
             // gérer statut 
-            this.HorlogeManager.Horloge.Statut = HorlogeState.NatureSoundConfiguration;
+            this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
 
             // event relié
             lblNatureSound.Text = btnSonPluie.Text;
@@ -416,7 +607,7 @@ namespace M306_Bleu_Projet
         private void btnNatureSoundRuisseauClick(object sender, EventArgs e)
         {
             // gérer statut 
-            this.HorlogeManager.Horloge.Statut = HorlogeState.NatureSoundConfiguration;
+            this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
 
             // event relié
             lblNatureSound.Text = btnSonRuisseau.Text;
@@ -429,7 +620,7 @@ namespace M306_Bleu_Projet
         private void btnNatureSoundPoissonClick(object sender, EventArgs e)
         {
             // gérer statut 
-            this.HorlogeManager.Horloge.Statut = HorlogeState.NatureSoundConfiguration;
+            this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
 
             // event relié
             lblNatureSound.Text = btnSonPlongee.Text;
@@ -439,7 +630,7 @@ namespace M306_Bleu_Projet
         }
         #endregion
 
-        #region VOLUME 
+        #region VOLUME [GLOBAL VOLUME + ALARMS VOLUMES]
         // BTN VOLUME +
         private void btnVolumeUpClick(object sender, EventArgs e)
         {
@@ -453,42 +644,33 @@ namespace M306_Bleu_Projet
         }
         #endregion
 
-        #region DISPLAY CLOCK
+        #region DISPLAY CLOCK [CONFIG HORLOGE]
         // BTN DISPLAY/CLOCK CLICK
         private void btnDisplayClockClick(object sender, EventArgs e)
         {
             // lors de la configuration de l'alarme
-            if (HorlogeManager.Horloge.Statut == HorlogeState.AlarmConfiguration)
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.HorlogeConfiguration)
             {
                 // utiliser des sous états
                 switch (HorlogeManager.Horloge.EtapeActive)
                 {
-                    case AlarmConfigurationEtapes.Annee:
-                        HorlogeManager.Horloge.EtapeActive = AlarmConfigurationEtapes.Mois;
+                    case HorlogeConfigurationEtapes.Annee:
+                        HorlogeManager.Horloge.EtapeActive = HorlogeConfigurationEtapes.Mois;
                         configurationsTemporaires["annee"] = lblConfigurationValue.Text;
-                        ChangeConfigurationAffichage("Configuration de l'alarme", "Mois", HorlogeManager.Horloge.ConfigurationHorloge.Mois.ToString());
-
-
-
                         break;
-                    case AlarmConfigurationEtapes.Mois:
-                        HorlogeManager.Horloge.EtapeActive = AlarmConfigurationEtapes.Jour;
+                    case HorlogeConfigurationEtapes.Mois:
+                        HorlogeManager.Horloge.EtapeActive = HorlogeConfigurationEtapes.Jour;
                         configurationsTemporaires["mois"] = lblConfigurationValue.Text;
-                        ChangeConfigurationAffichage("Configuration de l'alarme", "Jour", HorlogeManager.Horloge.ConfigurationHorloge.Jour.ToString());
-
                         break;
-                    case AlarmConfigurationEtapes.Jour:
-                        HorlogeManager.Horloge.EtapeActive = AlarmConfigurationEtapes.Heure;
+                    case HorlogeConfigurationEtapes.Jour:
+                        HorlogeManager.Horloge.EtapeActive = HorlogeConfigurationEtapes.Heure;
                         configurationsTemporaires["jour"] = lblConfigurationValue.Text;
-                        ChangeConfigurationAffichage("Configuration de l'alarme", "Heure", HorlogeManager.Horloge.ConfigurationHorloge.Heure.ToString());
                         break;
-                    case AlarmConfigurationEtapes.Heure:
-                        HorlogeManager.Horloge.EtapeActive = AlarmConfigurationEtapes.Minute;
+                    case HorlogeConfigurationEtapes.Heure:
+                        HorlogeManager.Horloge.EtapeActive = HorlogeConfigurationEtapes.Minute;
                         configurationsTemporaires["heure"] = lblConfigurationValue.Text;
-                        ChangeConfigurationAffichage("Configuration de l'alarme", "Minute", HorlogeManager.Horloge.ConfigurationHorloge.Minute.ToString());
                         break;
-                    case AlarmConfigurationEtapes.Minute:
-                        // Configuration terminée + validée
+                    case HorlogeConfigurationEtapes.Minute:
                         configurationsTemporaires["minute"] = lblConfigurationValue.Text;
 
                         DateTime nouvelleHeure = new DateTime
@@ -504,11 +686,9 @@ namespace M306_Bleu_Projet
                         HorlogeManager.Horloge.NouvelleHeure = nouvelleHeure;
 
                         /*************** STATUT NATURAL CONFIGURATION *******************/
-                        HorlogeManager.Horloge.Statut = HorlogeState.NaturalConfiguration;
+                        HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
                         /*************** ETAPE ALARM CONFIGURATION INACTIVE *******************/
-                        HorlogeManager.Horloge.EtapeActive = AlarmConfigurationEtapes.Inactive;
-
-                        HideConfigurationAffichage();
+                        HorlogeManager.Horloge.EtapeActive = HorlogeConfigurationEtapes.Inactive;
 
                         break;
                     default:
@@ -516,11 +696,120 @@ namespace M306_Bleu_Projet
                 }
             }
 
+            HandleConfigurationAffichage();
             UpdateView();
         }
         #endregion
 
-        #region SNOOZE
+        #region ALARM A ON/OFF [CONFIG ALARM A + ACTIVATION ALARM A]
+        private void btn_AlarmOnOffA_Click(object sender, EventArgs e)
+        {
+            // si status normal -> activer alarme A
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration)
+            {
+                // TODO: Activer ALARM A
+            }
+            else if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration)
+            {
+                switch (HorlogeManager.Horloge.AlarmConfigurationEtape)
+                {
+                    case AlarmConfigurationEtapes.Inactive:
+                        break;
+                    case AlarmConfigurationEtapes.Heure:
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Minute;
+                        break;
+                    case AlarmConfigurationEtapes.Minute:
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Periode;
+                        break;
+                    case AlarmConfigurationEtapes.Periode:
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Son;
+                        break;
+                    case AlarmConfigurationEtapes.Son:
+                        if (HorlogeManager.Horloge.AlarmConfigurationSound == AlarmType.NatureSound || HorlogeManager.Horloge.AlarmConfigurationSound == AlarmType.Radio)
+                        {
+                            HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.SonConfiguration;
+                        }
+                        else
+                        {
+                            HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Volume;
+
+                        }
+
+                        break;
+                    case AlarmConfigurationEtapes.SonConfiguration:
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Volume;
+                        break;
+                    case AlarmConfigurationEtapes.Volume:
+
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Inactive;
+                        HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
+
+                        break;
+                    default:
+                        break;
+                }
+
+                HandleConfigurationAffichage();
+                UpdateView();
+            }
+        }
+        #endregion
+
+        #region ALARM B ON/OFF [CONFIG ALARM B + ACTIVATION ALARM B]
+        private void btn_AlarmOnOffB_Click(object sender, EventArgs e)
+        {
+            // si status normal -> activer alarme B
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration)
+            {
+                // TODO: Activer ALARM B
+            }
+            else if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
+            {
+                switch (HorlogeManager.Horloge.AlarmConfigurationEtape)
+                {
+                    case AlarmConfigurationEtapes.Inactive:
+                        break;
+                    case AlarmConfigurationEtapes.Heure:
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Minute;
+                        break;
+                    case AlarmConfigurationEtapes.Minute:
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Periode;
+                        break;
+                    case AlarmConfigurationEtapes.Periode:
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Son;
+                        break;
+                    case AlarmConfigurationEtapes.Son:
+                        if (HorlogeManager.Horloge.AlarmConfigurationSound == AlarmType.NatureSound || HorlogeManager.Horloge.AlarmConfigurationSound == AlarmType.Radio)
+                        {
+                            HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.SonConfiguration;
+                        }
+                        else
+                        {
+                            HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Volume;
+
+                        }
+
+                        break;
+                    case AlarmConfigurationEtapes.SonConfiguration:
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Volume;
+                        break;
+                    case AlarmConfigurationEtapes.Volume:
+
+                        HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Inactive;
+                        HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
+
+                        break;
+                    default:
+                        break;
+                }
+
+                HandleConfigurationAffichage();
+                UpdateView();
+            }
+        }
+        #endregion
+
+        #region SNOOZE [CONFIG LUMINOSITE + DELAY ALARMS]
 
         // SNOOZE CLICK
         private void btnSnoozeClick(object sender, EventArgs e)
@@ -530,58 +819,60 @@ namespace M306_Bleu_Projet
         }
         #endregion
 
-        #region ALARM RESET
-        // ALARM ON/OFF CLICK
-        private void btnAlarmOffClick(object sender, EventArgs e)
-        {
-            // config nature sound -> normal
-            if (HorlogeManager.Horloge.Statut == HorlogeState.NatureSoundConfiguration) // retour depuis config nature sound
-            {
-                // on "éteint" les sons nature
-                lblNatureSound.Text = "OFF";
-            }
-
-            if (HorlogeManager.Horloge.Statut == HorlogeState.AlarmConfiguration) // retour depuis config de l'alarme
-            {
-                HideConfigurationAffichage();
-            }
-
-            HorlogeManager.Horloge.Statut = HorlogeState.NaturalConfiguration;
-
-            UpdateView();
-        }
-        #endregion
-
-        #region SET TIME - / +
+        #region SET TIME - / + [CONFIG GLOBALES ADD/REMOVE]
 
         // BTN TIME SET + (DROITE + GAUCHE)
         private void btnTimeSetAdd_Click(object sender, EventArgs e)
         {
-            HorlogeManager.ConfigureHoraire(true);
+            //HorlogeManager.ConfigureHoraire(true);
+
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.HorlogeConfiguration)
+                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationHorloge, true);
+
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
+                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationAlarmeB, true);
+
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration)
+                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationAlarmeA, true);
+
             HandleConfigurationAffichage();
+            UpdateView();
         }
 
         // BTN TIME SET - (DROITE + GAUCHE)
         private void btnTimeSetRemove_Click(object sender, EventArgs e)
         {
-            HorlogeManager.ConfigureHoraire(false);
+            //HorlogeManager.ConfigureHoraire(false);
+
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.HorlogeConfiguration)
+                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationHorloge, false);
+
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
+                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationAlarmeB, false);
+
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration)
+                HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationAlarmeA, false);
+
             HandleConfigurationAffichage();
+            UpdateView();
         }
 
         #endregion
 
+        #region DATE/TIME ZONE [AFFICHAGE YEAR + DATE]
+
         private void btnDateTimeClick(object sender, EventArgs e)
         {
-            if ( HorlogeManager.Horloge.Statut == HorlogeState.NaturalConfiguration ) 
+            if ( HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration ) 
             {
                 // entrer dans état -> show année
-                HorlogeManager.Horloge.Statut = HorlogeState.AffichageAnnee;
+                HorlogeManager.Horloge.Statut = HorlogeEtat.AffichageAnnee;
                 lblAnnee.Text = HorlogeManager.GetCustomFormat(HorlogeManager.Horloge.GetHeure(), "yyyy"); // année
 
-            } else if (HorlogeManager.Horloge.Statut == HorlogeState.AffichageAnnee)
+            } else if (HorlogeManager.Horloge.Statut == HorlogeEtat.AffichageAnnee)
             {
                 // entrer dans état -> show année
-                HorlogeManager.Horloge.Statut = HorlogeState.AffichageDate;
+                HorlogeManager.Horloge.Statut = HorlogeEtat.AffichageDate;
                 lblDate.Text = HorlogeManager.GetCustomFormat(HorlogeManager.Horloge.GetHeure(), "dd MMMM"); // Mois-jour
 
                 // après 2 seconde, faire disparaitre element date
@@ -593,41 +884,80 @@ namespace M306_Bleu_Projet
 
         #endregion
 
+        #region ALARM RESET [RESET GLOBAL]
+        // ALARM ON/OFF CLICK
+        private void btnAlarmOffClick(object sender, EventArgs e)
+        {
+            // config nature sound -> normal
+            if (HorlogeManager.Horloge.Statut == HorlogeEtat.NatureSoundConfiguration) // retour depuis config nature sound
+            {
+                // on "éteint" les sons nature
+                lblNatureSound.Text = "OFF";
+            }
+
+            if ( HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmAConfiguration || HorlogeManager.Horloge.Statut == HorlogeEtat.AlarmBConfiguration)
+            {
+                // RESET DES SOUS ETAPES
+                HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Inactive;
+                HorlogeManager.Horloge.AlarmConfigurationPeriode = AlarmPeriodes.Weekday;
+                HorlogeManager.Horloge.AlarmConfigurationSound = AlarmType.NatureSound;
+                HorlogeManager.Horloge.AlarmConfigurationSoundRadioType = AlarmRadioType.AM;
+                HorlogeManager.Horloge.AlarmConfigurationSoundNaturePreset = AlarmNatureSoundPresets.Vagues;
+            }
+
+            HorlogeManager.Horloge.Statut = HorlogeEtat.NaturalConfiguration;
+
+            UpdateView();
+        }
+        #endregion
+
+        #endregion
+
         #region [EVENTS] MOUSE UP & DOWN
 
         #region ALARM B ON/OFF
 
-        // BTN ALARM ON/OFF MOUSEDOWN
-        private void btnAlarmBDown(object sender, MouseEventArgs e)
+        private void btnMouseDownStartTimer(object sender, MouseEventArgs e)
         {
             startTimer();
         }
 
-        // BTN ALARM ON/OFF MOUSEUP
+        // BTN ALARM ON/OFF A
+        private void btnAlarmAUp(object sender, MouseEventArgs e)
+        {
+            stopTimer();
+
+            if (this.boutonAppuiSeconde >= 2)
+            {
+                HorlogeManager.Horloge.Statut = HorlogeEtat.AlarmAConfiguration;
+                HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Heure;
+
+                configurationsTemporaires = new NameValueCollection();
+            }
+
+            HandleConfigurationAffichage();
+            UpdateView();
+        }
+
+        // BTN ALARM ON/OFF B
         private void btnAlarmBUp(object sender, MouseEventArgs e)
         {
             stopTimer();
 
             if (this.boutonAppuiSeconde >= 2)
             {
-                Console.WriteLine("Le boutton a été cliqué durant + de 2 secondes");
-            }
-            else
-            {
-                Console.WriteLine("Click normal");
-            }
-            Console.WriteLine(this.boutonAppuiSeconde.ToString());
-        }
+                HorlogeManager.Horloge.Statut = HorlogeEtat.AlarmBConfiguration;
+                HorlogeManager.Horloge.AlarmConfigurationEtape = AlarmConfigurationEtapes.Heure;
 
+                configurationsTemporaires = new NameValueCollection();
+            }
+
+            HandleConfigurationAffichage();
+            UpdateView();
+        }
         #endregion
 
         #region DISPLAY CLOCK
-
-        // BTN DISPLAY/CLOCK MOUSEDOWN
-        private void btnDisplayClockDown(object sender, MouseEventArgs e)
-        {
-            startTimer();
-        }
 
         // BTN DISPLAY/CLOCK MOUSEUP
         private void btnDisplayClockUp(object sender, EventArgs e)
@@ -637,15 +967,21 @@ namespace M306_Bleu_Projet
             if (boutonAppuiSeconde >= 2) // SI MOUSEDOWN DURE + DE 2 SECONDES
             {
                 /*************** STATUT ALARM CONFIGURATION *******************/
-                HorlogeManager.Horloge.Statut = HorlogeState.AlarmConfiguration;
+                HorlogeManager.Horloge.Statut = HorlogeEtat.HorlogeConfiguration;
                 /*************** ETAPE ALARM CONFIGURATION ANNEE *******************/
-                HorlogeManager.Horloge.EtapeActive = AlarmConfigurationEtapes.Annee;
+                HorlogeManager.Horloge.EtapeActive = HorlogeConfigurationEtapes.Annee;
 
-                ChangeConfigurationAffichage("Configuration de l'alarme", "Année", HorlogeManager.Horloge.ConfigurationHorloge.Annee.ToString());
+                configurationsTemporaires = new NameValueCollection();
 
+                HandleConfigurationAffichage();
                 UpdateView();
             }
         }
+
+
+
+
+
 
         #endregion
 

@@ -13,6 +13,13 @@ namespace M306_Bleu_Projet
         private int heure;
         private int minute;
         private int seconde;
+        private AlarmPeriodes periode;
+        private AlarmType type;
+        private AlarmRadioType radioType;
+        private AlarmNatureSoundPresets naturePreset;
+        private string alarmSoundName;
+        private int volume;
+
 
         public int Annee { get => annee; set => annee = value; }
         public int Mois
@@ -82,6 +89,25 @@ namespace M306_Bleu_Projet
             }
         }
 
+        internal AlarmPeriodes Periode { get => periode; set => periode = value; }
+        internal AlarmType Type { get => type; set => type = value; }
+        public string AlarmSoundName { get => alarmSoundName; set => alarmSoundName = value; }
+        public int Volume { 
+            get => volume; 
+            set
+            {
+                if (value > 30)
+                    volume = 1;
+                else if (value < 1)
+                    volume = 30;
+                else
+                    volume = value;
+            }
+        }
+
+        internal AlarmRadioType RadioType { get => radioType; set => radioType = value; }
+        internal AlarmNatureSoundPresets NaturePreset { get => naturePreset; set => naturePreset = value; }
+
         public Horaire()
         {
             Annee = DateTime.Now.Year;
@@ -90,8 +116,11 @@ namespace M306_Bleu_Projet
             Heure = DateTime.Now.Hour;
             Minute = DateTime.Now.Minute;
             Seconde = 0;
+            Type = AlarmType.NatureSound;
+            Periode = AlarmPeriodes.Weekday;
+            RadioType = AlarmRadioType.AM;
+            NaturePreset = AlarmNatureSoundPresets.Vagues;
+            Volume = 15;
         }
-
-        
     }
 }
