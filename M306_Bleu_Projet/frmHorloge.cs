@@ -614,6 +614,7 @@ namespace M306_Bleu_Projet
 
         #endregion
 
+        // EVENTS
         #region [EVENT] LOAD
 
         /*
@@ -768,8 +769,14 @@ namespace M306_Bleu_Projet
         #region [EVENTS] CLICKS  
 
         #region NATURE SOUND [CONFIGURATION NATURE SOUNDS]
-        // VAGUE CLICK
-        private void btnNatureSoundVagueClick(object sender, EventArgs e)
+
+        /*
+         * Nom                      : BtnNatureSoundVague_Click
+         * Description              : Affiche text correspondant dans la zone Nature Sound (Simulation de l'audio)
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnNatureSoundVague_Click(object sender, EventArgs e)
         {
             // gérer statut 
             this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
@@ -781,8 +788,13 @@ namespace M306_Bleu_Projet
             this.UpdateView();
         }
 
-        // OISEAU CLICK
-        private void btnNatureSoundOiseauClick(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnNatureSoundOiseaux_Click
+         * Description              : Affiche text correspondant dans la zone Nature Sound (Simulation de l'audio)
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnNatureSoundOiseaux_Click(object sender, EventArgs e)
         {
             // gérer statut 
             this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
@@ -794,8 +806,13 @@ namespace M306_Bleu_Projet
             this.UpdateView();
         }
 
-        // PARAPLUIE CLICK
-        private void btnNatureSoundParapluieClick(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnNatureSoundParapluie_Click
+         * Description              : Affiche text correspondant dans la zone Nature Sound (Simulation de l'audio)
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnNatureSoundParapluie_Click(object sender, EventArgs e)
         {
             // gérer statut 
             this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
@@ -807,8 +824,13 @@ namespace M306_Bleu_Projet
             this.UpdateView();
         }
 
-        // RUISSEAU CLICK
-        private void btnNatureSoundRuisseauClick(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnNatureSoundRuisseau_Click
+         * Description              : Affiche text correspondant dans la zone Nature Sound (Simulation de l'audio)
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnNatureSoundRuisseau_Click(object sender, EventArgs e)
         {
             // gérer statut 
             this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
@@ -820,8 +842,13 @@ namespace M306_Bleu_Projet
             this.UpdateView();
         }
 
-        // POISSON / PLONGÉE CLICK
-        private void btnNatureSoundPoissonClick(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnNatureSoundPoisson_Click
+         * Description              : Affiche text correspondant dans la zone Nature Sound (Simulation de l'audio)
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnNatureSoundPoisson_Click(object sender, EventArgs e)
         {
             // gérer statut 
             this.HorlogeManager.Horloge.Statut = HorlogeEtat.NatureSoundConfiguration;
@@ -835,22 +862,39 @@ namespace M306_Bleu_Projet
         #endregion
 
         #region VOLUME [GLOBAL VOLUME + ALARMS VOLUMES]
-        // BTN VOLUME +
-        private void btnVolumeUpClick(object sender, EventArgs e)
+
+        /*
+         * Nom                      : BtnVolumeUp_Click
+         * Description              : Augmente la valeur du volume de la classe "Horloge", et l'affiche dans le label correspondant
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnVolumeUp_Click(object sender, EventArgs e)
         {
             lblVolumeGlobal.Text = HorlogeManager.AddVolume().ToString();
         }
 
-        // BTN VOLUME -
-        private void btnVolumeDownClick(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnVolumeDown_Click
+         * Description              : Diminue la valeur du volume de la classe "Horloge", et l'affiche dans le label correspondant
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnVolumeDown_Click(object sender, EventArgs e)
         {
             lblVolumeGlobal.Text = HorlogeManager.RemoveVolume().ToString();
         }
         #endregion
 
         #region DISPLAY CLOCK [CONFIG HORLOGE]
-        // BTN DISPLAY/CLOCK CLICK
-        private void btnDisplayClockClick(object sender, EventArgs e)
+
+        /*
+         * Nom                      : BtnDisplayClock_Click
+         * Description              : Passe les étapes lorsque nous sommes dans la configuration de l'horloge, Configure la nouvelle heure si configuration validée
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnDisplayClock_Click(object sender, EventArgs e)
         {
             // lors de la configuration de l'alarme
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.HorlogeConfiguration)
@@ -906,7 +950,14 @@ namespace M306_Bleu_Projet
         #endregion
 
         #region ALARM A ON/OFF [CONFIG ALARM A + ACTIVATION ALARM A]
-        private void btn_AlarmOnOffA_Click(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnAlarmOnOffA_Click
+         * Description              :   Si état normal -> active Alarme A (si déjà configurée)
+         *                              Si état configuration alarmes -> passe les étapes de la configuration + affiche la configuration (si validée) + change booléan "IsConfigured" de l'alarme A
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnAlarmOnOffA_Click(object sender, EventArgs e)
         {
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration)
             {
@@ -979,7 +1030,14 @@ namespace M306_Bleu_Projet
         #endregion
 
         #region ALARM B ON/OFF [CONFIG ALARM B + ACTIVATION ALARM B]
-        private void btn_AlarmOnOffB_Click(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnAlarmOnOffB_Click
+         * Description              :   Si état normal -> active Alarme B (si déjà configurée)
+         *                              Si état configuration alarmes -> passe les étapes de la configuration + affiche la configuration (si validée) + change booléan "IsConfigured" de l'alarme B
+         * Paramètre (s) d’ entrée  : -
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnAlarmOnOffB_Click(object sender, EventArgs e)
         {
             // si status normal -> activer alarme B
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration)
@@ -1057,21 +1115,29 @@ namespace M306_Bleu_Projet
 
         #region SNOOZE [CONFIG LUMINOSITE + DELAY ALARMS]
 
-        // SNOOZE CLICK
-        private void btnSnoozeClick(object sender, EventArgs e)
+
+        /*
+         * Nom                      : BtnSnooze_Click
+         * Description              : Incrémente valeur "Luminosité" de l'horloge, l'affiche sur l'interface
+         * Paramètre (s) d’ entrée  : -
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnSnooze_Click(object sender, EventArgs e)
         {
-            // TODO: check si une alarme n'est pas activée
             lblLuminosite.Text = HorlogeManager.ChangeLuminosite().ToString();
         }
         #endregion
 
         #region SET TIME - / + [CONFIG GLOBALES ADD/REMOVE]
 
-        // BTN TIME SET + (DROITE + GAUCHE)
-        private void btnTimeSetAdd_Click(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnTimeSetAdd_Click
+         * Description              : Selon état incrémente la bonne valeur des classes (Horloge, Alarme A ou Alarme B)
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnTimeSetAdd_Click(object sender, EventArgs e)
         {
-            //HorlogeManager.ConfigureHoraire(true);
-
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.HorlogeConfiguration)
                 HorlogeManager.ConfigureNouvelHoraire(HorlogeManager.Horloge.ConfigurationHorloge, true);
 
@@ -1085,8 +1151,13 @@ namespace M306_Bleu_Projet
             UpdateView();
         }
 
-        // BTN TIME SET - (DROITE + GAUCHE)
-        private void btnTimeSetRemove_Click(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnTimeSetRemove_Click
+         * Description              : Selon état décrémente la bonne valeur des classes (Horloge, Alarme A ou Alarme B)
+         * Paramètre (s) d’ entrée  : -
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnTimeSetRemove_Click(object sender, EventArgs e)
         {
             //HorlogeManager.ConfigureHoraire(false);
 
@@ -1106,8 +1177,13 @@ namespace M306_Bleu_Projet
         #endregion
 
         #region DATE/TIME ZONE [AFFICHAGE YEAR + DATE]
-
-        private void btnDateTimeClick(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnDateTime_Click
+         * Description              : Selon état, affiche l'année et la date (qui disparait ensuite après 2 secondes)
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnDateTime_Click(object sender, EventArgs e)
         {
             if ( HorlogeManager.Horloge.Statut == HorlogeEtat.NaturalConfiguration ) 
             {
@@ -1132,8 +1208,13 @@ namespace M306_Bleu_Projet
 
         #region ALARM RESET [RESET GLOBAL]
 
-
-        private void btnAlarmOffClick(object sender, EventArgs e)
+        /*
+         * Nom                      : BtnReset_Click
+         * Description              : Selon état Reset l'interface et/ou des valeurs enregistrées
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnReset_Click(object sender, EventArgs e)
         {
             // config nature sound -> normal
             if (HorlogeManager.Horloge.Statut == HorlogeEtat.NatureSoundConfiguration) // retour depuis config nature sound
@@ -1172,14 +1253,27 @@ namespace M306_Bleu_Projet
         #region [EVENTS] MOUSE UP & DOWN
 
         #region BUTTONS ACTIVATE TIMER [MOUSEDOWN]
-        private void btnMouseDownStartTimer(object sender, MouseEventArgs e)
+
+        /*
+         * Nom                      : BtnsMouseDown_ActivateTimer
+         * Description              : Aux mousedown correpondants, activer le timer (qui checkera si on reste appuyé + de 2 secondes)
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnsMouseDown_ActivateTimer(object sender, MouseEventArgs e)
         {
             StartTimer();
         }
         #endregion
 
         #region ALARM A ON/OFF [MOUSEUP]
-        private void btnAlarmAUp(object sender, MouseEventArgs e)
+        /*
+         * Nom                      : BtnAlarmA_MouseUp
+         * Description              : Si "boutonAppuiSeconde" > 2, active l'état de configuration Alarme A
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnAlarmA_MouseUp(object sender, MouseEventArgs e)
         {
             StopTimer();
 
@@ -1197,7 +1291,13 @@ namespace M306_Bleu_Projet
         #endregion
 
         #region ALARM B ON/OFF [MOUSEUP]
-        private void btnAlarmBUp(object sender, MouseEventArgs e)
+        /*
+         * Nom                      : BtnAlarmB_MouseUp
+         * Description              : Si "boutonAppuiSeconde" > 2, active l'état de configuration Alarme B
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnAlarmB_MouseUp(object sender, MouseEventArgs e)
         {
             StopTimer();
 
@@ -1215,7 +1315,14 @@ namespace M306_Bleu_Projet
         #endregion
 
         #region DISPLAY CLOCK [MOUSEUP]
-        private void btnDisplayClockUp(object sender, EventArgs e)
+
+        /*
+         * Nom                      : BtnDisplayClock_MouseUp
+         * Description              : Si "boutonAppuiSeconde" > 2, active l'état de configuration de l'horloge
+         * Paramètre (s) d’ entrée  : 
+         * Paramètre (s) de sortie  : void
+         * */
+        private void BtnDisplayClock_MouseUp(object sender, EventArgs e)
         {
             StopTimer();
 

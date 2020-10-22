@@ -560,9 +560,9 @@
             this.btnDisplayClock.TabIndex = 0;
             this.btnDisplayClock.Text = "DISPLAY/CLOCK";
             this.btnDisplayClock.UseVisualStyleBackColor = true;
-            this.btnDisplayClock.Click += new System.EventHandler(this.btnDisplayClockClick);
-            this.btnDisplayClock.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMouseDownStartTimer);
-            this.btnDisplayClock.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnDisplayClockUp);
+            this.btnDisplayClock.Click += new System.EventHandler(this.BtnDisplayClock_Click);
+            this.btnDisplayClock.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnsMouseDown_ActivateTimer);
+            this.btnDisplayClock.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDisplayClock_MouseUp);
             // 
             // btnTimeZone
             // 
@@ -573,7 +573,7 @@
             this.btnTimeZone.TabIndex = 0;
             this.btnTimeZone.Text = "DATE/TIME ZONE";
             this.btnTimeZone.UseVisualStyleBackColor = true;
-            this.btnTimeZone.Click += new System.EventHandler(this.btnDateTimeClick);
+            this.btnTimeZone.Click += new System.EventHandler(this.BtnDateTime_Click);
             // 
             // gbTimeSetLeft
             // 
@@ -595,7 +595,7 @@
             this.btnTimeSetLeftDown.TabIndex = 0;
             this.btnTimeSetLeftDown.Text = "-";
             this.btnTimeSetLeftDown.UseVisualStyleBackColor = true;
-            this.btnTimeSetLeftDown.Click += new System.EventHandler(this.btnTimeSetRemove_Click);
+            this.btnTimeSetLeftDown.Click += new System.EventHandler(this.BtnTimeSetRemove_Click);
             // 
             // btnTimeSetLeftUp
             // 
@@ -606,7 +606,7 @@
             this.btnTimeSetLeftUp.TabIndex = 0;
             this.btnTimeSetLeftUp.Text = "+";
             this.btnTimeSetLeftUp.UseVisualStyleBackColor = true;
-            this.btnTimeSetLeftUp.Click += new System.EventHandler(this.btnTimeSetAdd_Click);
+            this.btnTimeSetLeftUp.Click += new System.EventHandler(this.BtnTimeSetAdd_Click);
             // 
             // gbTimeSetRight
             // 
@@ -628,7 +628,7 @@
             this.btnTimeSetRightDown.TabIndex = 0;
             this.btnTimeSetRightDown.Text = "-";
             this.btnTimeSetRightDown.UseVisualStyleBackColor = true;
-            this.btnTimeSetRightDown.Click += new System.EventHandler(this.btnTimeSetRemove_Click);
+            this.btnTimeSetRightDown.Click += new System.EventHandler(this.BtnTimeSetRemove_Click);
             // 
             // btnTimeSetRightUp
             // 
@@ -639,7 +639,7 @@
             this.btnTimeSetRightUp.TabIndex = 0;
             this.btnTimeSetRightUp.Text = "+";
             this.btnTimeSetRightUp.UseVisualStyleBackColor = true;
-            this.btnTimeSetRightUp.Click += new System.EventHandler(this.btnTimeSetAdd_Click);
+            this.btnTimeSetRightUp.Click += new System.EventHandler(this.BtnTimeSetAdd_Click);
             // 
             // gbVolume
             // 
@@ -661,7 +661,7 @@
             this.btnVolumeDown.TabIndex = 0;
             this.btnVolumeDown.Text = "-";
             this.btnVolumeDown.UseVisualStyleBackColor = true;
-            this.btnVolumeDown.Click += new System.EventHandler(this.btnVolumeDownClick);
+            this.btnVolumeDown.Click += new System.EventHandler(this.BtnVolumeDown_Click);
             // 
             // btnVolumeUp
             // 
@@ -672,7 +672,7 @@
             this.btnVolumeUp.TabIndex = 0;
             this.btnVolumeUp.Text = "+";
             this.btnVolumeUp.UseVisualStyleBackColor = true;
-            this.btnVolumeUp.Click += new System.EventHandler(this.btnVolumeUpClick);
+            this.btnVolumeUp.Click += new System.EventHandler(this.BtnVolumeUp_Click);
             // 
             // btnSleep
             // 
@@ -703,7 +703,7 @@
             this.btnAlertResetOff.TabIndex = 0;
             this.btnAlertResetOff.Text = "OFF";
             this.btnAlertResetOff.UseVisualStyleBackColor = true;
-            this.btnAlertResetOff.Click += new System.EventHandler(this.btnAlarmOffClick);
+            this.btnAlertResetOff.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // gbNatureSoundEffects
             // 
@@ -728,7 +728,7 @@
             this.btnSonOiseau.TabIndex = 0;
             this.btnSonOiseau.Text = "🐦";
             this.btnSonOiseau.UseVisualStyleBackColor = true;
-            this.btnSonOiseau.Click += new System.EventHandler(this.btnNatureSoundOiseauClick);
+            this.btnSonOiseau.Click += new System.EventHandler(this.BtnNatureSoundOiseaux_Click);
             // 
             // btnSonPlongee
             // 
@@ -739,7 +739,7 @@
             this.btnSonPlongee.TabIndex = 0;
             this.btnSonPlongee.Text = "🐟";
             this.btnSonPlongee.UseVisualStyleBackColor = true;
-            this.btnSonPlongee.Click += new System.EventHandler(this.btnNatureSoundPoissonClick);
+            this.btnSonPlongee.Click += new System.EventHandler(this.BtnNatureSoundPoisson_Click);
             // 
             // btnSonVagues
             // 
@@ -750,7 +750,7 @@
             this.btnSonVagues.TabIndex = 0;
             this.btnSonVagues.Text = "🌊";
             this.btnSonVagues.UseVisualStyleBackColor = true;
-            this.btnSonVagues.Click += new System.EventHandler(this.btnNatureSoundVagueClick);
+            this.btnSonVagues.Click += new System.EventHandler(this.BtnNatureSoundVague_Click);
             // 
             // btnSonRuisseau
             // 
@@ -761,7 +761,7 @@
             this.btnSonRuisseau.TabIndex = 0;
             this.btnSonRuisseau.Text = "💦";
             this.btnSonRuisseau.UseVisualStyleBackColor = true;
-            this.btnSonRuisseau.Click += new System.EventHandler(this.btnNatureSoundRuisseauClick);
+            this.btnSonRuisseau.Click += new System.EventHandler(this.BtnNatureSoundRuisseau_Click);
             // 
             // btnSonPluie
             // 
@@ -772,7 +772,7 @@
             this.btnSonPluie.TabIndex = 0;
             this.btnSonPluie.Text = "☂️";
             this.btnSonPluie.UseVisualStyleBackColor = true;
-            this.btnSonPluie.Click += new System.EventHandler(this.btnNatureSoundParapluieClick);
+            this.btnSonPluie.Click += new System.EventHandler(this.BtnNatureSoundParapluie_Click);
             // 
             // btnAlarmOnOffLeft
             // 
@@ -783,9 +783,9 @@
             this.btnAlarmOnOffLeft.TabIndex = 0;
             this.btnAlarmOnOffLeft.Text = "ALARM ON/OFF";
             this.btnAlarmOnOffLeft.UseVisualStyleBackColor = true;
-            this.btnAlarmOnOffLeft.Click += new System.EventHandler(this.btn_AlarmOnOffA_Click);
-            this.btnAlarmOnOffLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMouseDownStartTimer);
-            this.btnAlarmOnOffLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnAlarmAUp);
+            this.btnAlarmOnOffLeft.Click += new System.EventHandler(this.BtnAlarmOnOffA_Click);
+            this.btnAlarmOnOffLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnsMouseDown_ActivateTimer);
+            this.btnAlarmOnOffLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnAlarmA_MouseUp);
             // 
             // btnAlarmOnOffRight
             // 
@@ -796,9 +796,9 @@
             this.btnAlarmOnOffRight.TabIndex = 0;
             this.btnAlarmOnOffRight.Text = "ALARM ON/OFF";
             this.btnAlarmOnOffRight.UseVisualStyleBackColor = true;
-            this.btnAlarmOnOffRight.Click += new System.EventHandler(this.btn_AlarmOnOffB_Click);
-            this.btnAlarmOnOffRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMouseDownStartTimer);
-            this.btnAlarmOnOffRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnAlarmBUp);
+            this.btnAlarmOnOffRight.Click += new System.EventHandler(this.BtnAlarmOnOffB_Click);
+            this.btnAlarmOnOffRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnsMouseDown_ActivateTimer);
+            this.btnAlarmOnOffRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnAlarmB_MouseUp);
             // 
             // btnSnooze
             // 
@@ -809,7 +809,7 @@
             this.btnSnooze.TabIndex = 0;
             this.btnSnooze.Text = "SNOOZE / BRIGHTNESS";
             this.btnSnooze.UseVisualStyleBackColor = true;
-            this.btnSnooze.Click += new System.EventHandler(this.btnSnoozeClick);
+            this.btnSnooze.Click += new System.EventHandler(this.BtnSnooze_Click);
             // 
             // timerGlobal
             // 
