@@ -111,8 +111,6 @@ namespace M306_Bleu_Projet
             {
                 switch (Horloge.EtapeActive)
                 {
-                    case HorlogeConfigurationEtapes.Inactive:
-                        break;
                     case HorlogeConfigurationEtapes.Annee:
                         Horaire.Annee = Addition ? Horaire.Annee + 1 : Horaire.Annee - 1;
                         break;
@@ -137,8 +135,6 @@ namespace M306_Bleu_Projet
             {
                 switch (Horloge.AlarmConfigurationEtape)
                 {
-                    case AlarmConfigurationEtapes.Inactive:
-                        break;
                     case AlarmConfigurationEtapes.Heure:
                         Horaire.Heure = Addition ? Horaire.Heure + 1 : Horaire.Heure - 1;
                         break;
